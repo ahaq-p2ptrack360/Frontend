@@ -49,7 +49,13 @@ class CreatePermissionSeeder extends Seeder
         ];
 
         foreach ($permissions as $permission) {
-            Permission::create($permission);
+            Permission::updateOrCreate(
+                [
+                    'name' => $permission['name'],
+                    'guard_name' => $permission['guard_name'],
+                ],
+                $permission
+            );
         }
 
         $roles = Role::all();

@@ -79,23 +79,23 @@
     .chat-fixed-button:hover {
         animation: none;
     }
-    
+
     /* ✅ CHAT IFRAME STYLES */
     #chatOffcanvas {
         width: 450px !important;
         transition: transform 0.3s ease-in-out !important;
     }
-    
+
     #chatOffcanvas .offcanvas-body {
         padding: 0;
         overflow: hidden;
     }
-    
+
     @media (max-width: 768px) {
         #chatOffcanvas {
             width: 100% !important;
         }
-        
+
         /* Mobile pe button position adjust */
         .chat-fixed-button {
             right: 20px;
@@ -105,14 +105,14 @@
             font-size: 22px;
         }
     }
-    
+
     .chat-iframe-container {
         width: 100%;
         height: 100%;
         border: none;
         background: white;
     }
-    
+
     .chat-loading {
         display: flex;
         align-items: center;
@@ -122,7 +122,7 @@
         flex-direction: column;
         padding: 2rem;
     }
-    
+
     .chat-loading-spinner {
         width: 40px;
         height: 40px;
@@ -132,12 +132,12 @@
         animation: spin 1s linear infinite;
         margin-bottom: 1rem;
     }
-    
+
     @keyframes spin {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
-    
+
     .chat-loading-message {
         color: #6c757d;
         font-size: 0.9rem;
@@ -165,7 +165,7 @@
 <button class="chat-fixed-button" data-bs-toggle="offcanvas" data-bs-target="#chatOffcanvas" data-tooltip="Chat">
     <i class="fa-solid fa-comment"></i>
 </button>
-                    
+
                     <!-- Chat Offcanvas -->
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="chatOffcanvas" aria-labelledby="chatOffcanvasLabel" data-bs-backdrop="false" data-bs-scroll="true">
                         <!-- <div class="offcanvas-header">
@@ -178,7 +178,7 @@
                                 <div class="chat-loading-spinner"></div>
                                 <p class="chat-loading-message">Loading chat...</p>
                             </div>
-                            
+
                             <!-- Iframe -->
                             <iframe
                                 id="chatIframe"
@@ -209,7 +209,7 @@
     <script>
         // Safely pass company API URL to JS
         var companyApiUrl = @json(Auth::check() ? "api/companies/" . Auth::user()->company_id : "api/companies/0");
-        
+
         // Chat credentials from Laravel auth
         var chatEmail = "{{ Auth::check() ? Auth::user()->email : '' }}";
         var chatPassword = "{{ Auth::check() ? Auth::user()->two_factor_secret : '' }}";
@@ -234,37 +234,37 @@ $(document).ready(function() {
     //         fabButton.removeClass('open');
     //     });
     // }
-    
+
     // ✅ CHAT IFRAME HANDLING
     const chatOffcanvas = document.getElementById('chatOffcanvas');
     const chatIframe = document.getElementById('chatIframe');
     const chatLoading = document.getElementById('chatLoading');
-    
+
     if (chatOffcanvas && chatIframe) {
         // Reset iframe when offcanvas is shown
         chatOffcanvas.addEventListener('show.bs.offcanvas', function() {
             // Show loading indicator
             chatLoading.style.display = 'flex';
             chatIframe.style.display = 'none';
-            
+
             // Set iframe source
             const chatUrl = new URL('https://demo.p2ptrack360.com:8080/chat/public/conversations');
             chatUrl.searchParams.append('timestamp', Date.now());
-            
+
             chatIframe.src = chatUrl.toString();
         });
-        
+
         // Hide loading when iframe loads
         chatIframe.addEventListener('load', function() {
             setTimeout(() => {
                 chatLoading.style.display = 'none';
                 chatIframe.style.display = 'block';
-                
+
                 // Try auto-login after iframe loads
                 attemptChatAutoLoginFromMain();
             }, 1000);
         });
-        
+
         // Reset when offcanvas closes
         chatOffcanvas.addEventListener('hidden.bs.offcanvas', function() {
             // Clear iframe source to reset
@@ -275,44 +275,44 @@ $(document).ready(function() {
             }, 300);
         });
     }
-    
+
     // ✅ AUTO-LOGIN FUNCTION FROM MAIN PAGE
     function attemptChatAutoLoginFromMain() {
         try {
             const iframe = document.getElementById('chatIframe');
             if (!iframe) return;
-            
+
             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-            
+
             if (!iframeDoc || !iframeDoc.body) {
                 console.log('Chat iframe not loaded yet');
                 setTimeout(attemptChatAutoLoginFromMain, 1000);
                 return;
             }
-            
+
             // Check if already logged in
             const chatElements = iframeDoc.querySelector('.chat-container, .messages-container, .conversations-list, .active-chats');
             if (chatElements) {
                 console.log('Already logged in to chat');
                 return;
             }
-            
+
             // Look for login form
             const loginForm = iframeDoc.querySelector('form');
             const emailField = iframeDoc.querySelector('input[type="email"], input[name="email"], #email');
             const passwordField = iframeDoc.querySelector('input[type="password"], input[name="password"], #password');
-            
+
             if (loginForm && emailField && passwordField) {
                 console.log('Found chat login form, attempting auto-login');
-                
+
                 // Fill credentials
                 emailField.value = chatEmail;
                 passwordField.value = chatPassword;
-                
+
                 // Trigger change events
                 emailField.dispatchEvent(new Event('change', { bubbles: true }));
                 passwordField.dispatchEvent(new Event('change', { bubbles: true }));
-                
+
                 // Submit form
                 setTimeout(() => {
                     const loginButton = iframeDoc.querySelector('button[type="submit"], input[type="submit"], #loginbtn');
@@ -328,7 +328,43 @@ $(document).ready(function() {
             console.log('Auto-login from main page failed:', error.message);
         }
     }
-    
+
+    window.attemptChatAutoLoginFromMain = attemptChatAutoLoginFromMain;
+
+// 2️⃣ Global function to open chat offcanvas
+window.openChatOffcanvas = function() {
+    try {
+        const chatOffcanvasEl = document.getElementById('chatOffcanvas');
+        if (!chatOffcanvasEl) {
+            console.warn('Chat offcanvas element not found');
+            return;
+        }
+
+        let chatOffcanvas = bootstrap.Offcanvas.getInstance(chatOffcanvasEl);
+        if (!chatOffcanvas) {
+            chatOffcanvas = new bootstrap.Offcanvas(chatOffcanvasEl, {
+                backdrop: false,
+                scroll: true
+            });
+        }
+
+        chatOffcanvas.show();
+        console.log('Chat offcanvas opened successfully');
+
+        // Auto-login attempt after chat opens
+        setTimeout(() => {
+            if (typeof window.attemptChatAutoLoginFromMain === 'function') {
+                window.attemptChatAutoLoginFromMain();
+            }
+        }, 1500);
+
+    } catch (error) {
+        console.error('Error opening chat offcanvas:', error);
+    }
+};
+
+console.log('✅ Chat functions loaded successfully');
+
     window.addEventListener('message', function(event) {
         if (event.data && event.data.type === 'openChat') {
             const chatOffcanvas = new bootstrap.Offcanvas(document.getElementById('chatOffcanvas'));

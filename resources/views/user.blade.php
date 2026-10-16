@@ -567,7 +567,7 @@ $(document).ready(function() {
             $('#users-table').DataTable().destroy();
             $('#users-table tbody').empty();
         }
-
+console.log('hello',companyId == 0 ? "{{ config('app.api_url') }}users/super_admin_users" : "{{ config('app.api_url') }}users/company/" + companyId)
         $.ajax({
             url: companyId == 0 ? "{{ config('app.api_url') }}users/super_admin_users" : "{{ config('app.api_url') }}users/company/" + companyId,
             // url: "{{Auth::user()->company_id}}"==0 ? "{{ config('app.api_url') }}users/super_admin_users":"{{ config('app.api_url') }}users/company/{{Auth::user()->company_id}}",
@@ -594,14 +594,14 @@ $(document).ready(function() {
                         title: 'Email'
                     },
                     {
-                        data: 'bu_id',
+                        data: 'bu_name',
                         defaultContent: '-',
-                        title: 'BU ID'
+                        title: 'BU Name'
                     },
                     {
-                        data: 'designation_id',
+                        data: 'title',
                         defaultContent: '-',
-                        title: 'Designation ID'
+                        title: 'Designation Name'
                     },
                     {
                         data: 'company',

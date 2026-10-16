@@ -110,12 +110,6 @@
         font-size: 14px;
     }
 
-    /* .dataTables_wrapper {
-        overflow: visible !important;
-        position: relative;
-        z-index: 10;
-    } */
-
     .form-check.form-switch {
         display: inline-flex;
         align-items: center;
@@ -138,14 +132,12 @@
     }
 
     #business-unit-table .form-check-input {
-            width: 40px !important;
-            height: 22px !important;
-        }
+        width: 40px !important;
+        height: 22px !important;
+    }
 </style>
 
 <div class="row">
-
- 
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -239,28 +231,20 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="marketingManager" class="form-label">Marketing Manager</label>
-                    <select class="form-control" name="marketing_manager" id="marketingManager">
-
-
-                    </select>
+                    <select class="form-control" name="marketing_manager" id="marketingManager"></select>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="responsible" class="form-label">Responsible</label>
-                    <select class="form-control" name="reponsible_user" id="responsible">
-
-                    </select>
+                    <select class="form-control" name="reponsible_user" id="responsible"></select>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="storeManager" class="form-label">Store Manager</label>
-                    <select class="form-control" name="store_manager" id="storeManager">
-
-                    </select>
+                    <select class="form-control" name="store_manager" id="storeManager"></select>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="vendorRequired" class="form-label">Vendor Required</label>
-                    <select class="form-control" data-choices name="vendor_r" id="vendorRequired">
+                    <select class="form-control" name="vendor_r" id="vendorRequired">
                         <option value="">Select Period</option>
-                        <option value=""></option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </select>
@@ -268,24 +252,21 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="accountRequired" class="form-label">Account Required</label>
-                    <select class="form-control" data-choices name="customer_r" id="accountRequired">
+                    <select class="form-control" name="customer_r" id="accountRequired">
                         <option value="">Select Period</option>
-                        <option value=""></option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
                     </select>
                 </div>
 
                 <div class="col-md-4 mb-3">
-    <label for="ticketRepresented" class="form-label">Ticket Represented</label>
-    <input type="text" class="form-control" id="ticketRepresented" name="ticket_represented" placeholder="Enter Ticket Represented">
-</div>
+                    <label for="ticketRepresented" class="form-label">Ticket Represented</label>
+                    <input type="text" class="form-control" id="ticketRepresented" name="ticket_represented" placeholder="Enter Ticket Represented">
+                </div>
 
                 <div class="col-md-4 mb-3">
                     <label for="parentBU" class="form-label">Parent BU</label>
-                    <select class="form-control" name="parent_bu_id" id="parentBU">
-
-                    </select>
+                    <select class="form-control" name="parent_bu_id" id="parentBU"></select>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="zipcode" class="form-label">Zip Code</label>
@@ -294,9 +275,7 @@
                 @if(Auth::user()->id == 1)
                 <div class="col-md-4 mb-3">
                     <label for="editCompanyId" class="form-label">Company <span class="text-danger">*</span></label>
-                    <select class="form-control" id="CompanyId" name="company_id">
-                        {{-- Options will be populated dynamically --}}
-                    </select>
+                    <select class="form-control" id="CompanyId" name="company_id"></select>
                 </div>
                 @endif
             </div>
@@ -394,26 +373,20 @@
 
                 <div class="col-md-4 mb-3">
                     <label for="editMarketingManager" class="form-label">Marketing Manager</label>
-                    <select class="form-control" name="marketing_manager" id="editMarketingManager">
-
-                    </select>
+                    <select class="form-control" name="marketing_manager" id="editMarketingManager"></select>
                 </div>
 
                 <div class="col-md-4 mb-3">
                     <label for="editResponsible" class="form-label">Responsible</label>
-                    <select class="form-control" name="reponsible_user" id="editResponsible">
-
-                    </select>
+                    <select class="form-control" name="reponsible_user" id="editResponsible"></select>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="editStoreManager" class="form-label">Store Manager</label>
-                    <select class="form-control" name="store_manager" id="editStoreManager">
-
-                    </select>
+                    <select class="form-control" name="store_manager" id="editStoreManager"></select>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="editVendorRequired" class="form-label">Vendor Required</label>
-                    <select class="form-control"  name="vendor_r" id="editVendorRequired">
+                    <select class="form-control" name="vendor_r" id="editVendorRequired">
                         <option value="">Select Period</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
@@ -421,7 +394,7 @@
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="editAccountRequired" class="form-label">Account Required</label>
-                    <select class="form-control"  name="customer_r" id="editAccountRequired">
+                    <select class="form-control" name="customer_r" id="editAccountRequired">
                         <option value="">Select Period</option>
                         <option value="yes">Yes</option>
                         <option value="no">No</option>
@@ -429,15 +402,13 @@
                 </div>
 
                 <div class="col-md-4 mb-3">
-    <label for="editTicketRepresented" class="form-label">Ticket Represented</label>
-    <input type="text" class="form-control" id="editTicketRepresented" name="ticket_represented" placeholder="Enter Ticket Represented">
-</div>
+                    <label for="editTicketRepresented" class="form-label">Ticket Represented</label>
+                    <input type="text" class="form-control" id="editTicketRepresented" name="ticket_represented" placeholder="Enter Ticket Represented">
+                </div>
 
                 <div class="col-md-4 mb-3">
                     <label for="editParentBU" class="form-label">Parent BU</label>
-                    <select class="form-control" name="parent_bu_id" id="editParentBU">
-
-                    </select>
+                    <select class="form-control" name="parent_bu_id" id="editParentBU"></select>
                 </div>
                 <div class="col-md-4 mb-3">
                     <label for="editZipcode" class="form-label">Zip Code</label>
@@ -447,12 +418,9 @@
                 @if(Auth::user()->id == 1)
                 <div class="col-md-4 mb-3">
                     <label for="editCompanyId" class="form-label">Company <span class="text-danger">*</span></label>
-                    <select class="form-control" id="editCompanyId" name="company_id">
-                        {{-- Options will be populated dynamically --}}
-                    </select>
+                    <select class="form-control" id="editCompanyId" name="company_id"></select>
                 </div>
                 @endif
-
             </div>
             <div class="col-md-12">
                 <div class="map-search-container">
@@ -463,15 +431,6 @@
                 </div>
                 <div id="editMap" style="height: 400px; border-radius: 8px;"></div>
             </div>
-
-            <!-- <div class="mb-3">
-                <label class="form-label">Additional Fields</label>
-                <div id="editDynamicInputContainer"></div>
-                <div class="d-flex flex-wrap gap-2">
-                    <button type="button" class="btn btn-success bg-gradient mt-4" id="editAddMoreBtn">
-                        <i class="ri-add-line"></i> Add More</button>
-                </div>
-            </div> -->
 
             <div class="d-flex flex-wrap gap-2 justify-content-end">
                 <button type="button" class="btn btn-dark" data-bs-dismiss="offcanvas">Cancel</button>
@@ -497,22 +456,16 @@
 <!-- Bootstrap Toggle JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA34O91fqOnqRdFfypa-PruL4RwTXq9oTc&libraries=places&callback=initMap"
-  async
-  defer>
-</script> -->
 <script
     src="https://maps.googleapis.com/maps/api/js?key=eyJhbGciOiJIUzI1NiJ9.eyJ1c2VySWQiOiJwdHBAc3RhZ2FwbC5jb20iLCJzdWIiOiJwdHBAc3RhZ2FwbC5jb20iLCJpYXQiOjE3Njg0NjI5OTksImV4cCI6MTc2ODU0OTM5OX0.hCu0HQuEEmbSoBjLdeEwqOMorUhBHjveceAC1s1XjUU&callback=initMap&libraries=places&v=weekly"
     defer>
 </script>
 
-
 <script>
     let businessUnitDataTable;
     let map, marker;
     let inputCount = 0;
-    let createMap, createMarker,parentBU,editbu;
+    let createMap, createMarker, parentBU, editbu;
     let editMap, editMarker, Manager, editCompanyId, CompanyId, storeManager, responsible, editStoreManager, editResponsible, editMarketingManager;
     let permissions = null;
     const roleId = '{{ Auth::user()->role }}';
@@ -522,6 +475,8 @@
         loadPermissions(roleId).then(() => {
             applyBusinessUnitPermissionUI();
             fetchBusinessUnits();
+
+            // ============ LOAD USERS ============
             $.ajax({
                 url: ("{{ Auth::user()->company_id == 0 }}" ?
                     "{{ config('app.api_url') }}users/super_admin_users" :
@@ -530,139 +485,84 @@
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    storeManager = new Choices("#storeManager", {
-                        removeItemButton: !0,
-                    })
+                    const userChoices = response.map(item => ({
+                        value: String(item.id),
+                        label: item.name
+                    }));
+
+                    // CREATE form
+                    storeManager = new Choices("#storeManager", { removeItemButton: true });
                     storeManager.clearChoices();
-                    console.log(response);
-                    storeManager.setChoices(
-                        response.map(item => ({
-                            value: item.id,
-                            label: item.name // Properly formatting the label
-                        })),
-                        'value',
-                        'label',
-                        false
-                    );
+                    storeManager.setChoices(userChoices, 'value', 'label', false);
 
-                    Manager = new Choices("#marketingManager", {
-                        removeItemButton: !0,
-                    })
+                    Manager = new Choices("#marketingManager", { removeItemButton: true });
                     Manager.clearChoices();
-                    console.log(response);
-                    Manager.setChoices(
-                        response.map(item => ({
-                            value: item.id,
-                            label: item.name // Properly formatting the label
-                        })),
-                        'value',
-                        'label',
-                        false
-                    );
-                    responsible = new Choices("#responsible", {
-                        removeItemButton: !0,
-                    })
+                    Manager.setChoices(userChoices, 'value', 'label', false);
+
+                    responsible = new Choices("#responsible", { removeItemButton: true });
                     responsible.clearChoices();
-                    console.log(response);
-                    responsible.setChoices(
-                        response.map(item => ({
-                            value: item.id,
-                            label: item.name // Properly formatting the label
-                        })),
-                        'value',
-                        'label',
-                        false
-                    );
-                    editMarketingManager = new Choices("#editMarketingManager", {
-                        removeItemButton: !0,
-                    })
+                    responsible.setChoices(userChoices, 'value', 'label', false);
+
+                    // EDIT form
+                    editMarketingManager = new Choices("#editMarketingManager", { removeItemButton: true });
                     editMarketingManager.clearChoices();
-                    console.log(response);
-                    editMarketingManager.setChoices(
-                        response.map(item => ({
-                            value: item.id,
-                            label: item.name // Properly formatting the label
-                        })),
-                        'value',
-                        'label',
-                        false
-                    );
-                    editResponsible = new Choices("#editResponsible", {
-                        removeItemButton: !0,
-                    })
+                    editMarketingManager.setChoices(userChoices, 'value', 'label', false);
+
+                    editResponsible = new Choices("#editResponsible", { removeItemButton: true });
                     editResponsible.clearChoices();
-                    console.log(response);
-                    editResponsible.setChoices(
-                        response.map(item => ({
-                            value: item.id,
-                            label: item.name // Properly formatting the label
-                        })),
-                        'value',
-                        'label',
-                        false
-                    );
-                    editStoreManager = new Choices("#editStoreManager", {
-                        removeItemButton: !0,
-                    })
+                    editResponsible.setChoices(userChoices, 'value', 'label', false);
+
+                    editStoreManager = new Choices("#editStoreManager", { removeItemButton: true });
                     editStoreManager.clearChoices();
-                    console.log(response);
-                    editStoreManager.setChoices(
-                        response.map(item => ({
-                            value: item.id,
-                            label: item.name // Properly formatting the label
-                        })),
-                        'value',
-                        'label',
-                        false
-                    );
-
-                }
-            })
-
-            $.ajax({
-                url: '{{Auth::user()->company_id}}'==0? "{{ config('app.api_url') }}business_units":"{{ config('app.api_url') }}business_units/company/{{Auth::user()->company_id}}",
-                type: 'GET',
-                dataType: 'json',
-                success: function(response) {
-                    business_units = response;
-                    editbu = new Choices("#editParentBU", {
-                        removeItemButton: !0,
-                    })
-                    editbu.clearChoices(); // This line is causing the error
-                    console.log("check" + response);
-                    editbu.setChoices(response, 'id', 'name', false);
-                    parentBU = new Choices("#parentBU", {
-                        removeItemButton: !0,
-                    })
-                    parentBU.clearChoices(); // This line is causing the error
-                    console.log("check" + response);
-                    parentBU.setChoices(response, 'id', 'name', false);
-
-                    // Move the setChoiceByValue inside the success callback
+                    editStoreManager.setChoices(userChoices, 'value', 'label', false);
                 }
             });
 
+            // ============ LOAD BUSINESS UNITS (for parent BU dropdown) ============
+            $.ajax({
+                url: '{{ Auth::user()->company_id }}' == 0 ?
+                    "{{ config('app.api_url') }}business_units" :
+                    "{{ config('app.api_url') }}business_units/company/{{ Auth::user()->company_id }}",
+                type: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    const buChoices = response.map(item => ({
+                        value: String(item.id),
+                        label: item.name
+                    }));
+
+                    editbu = new Choices("#editParentBU", { removeItemButton: true });
+                    editbu.clearChoices();
+                    editbu.setChoices(buChoices, 'value', 'label', false);
+
+                    parentBU = new Choices("#parentBU", { removeItemButton: true });
+                    parentBU.clearChoices();
+                    parentBU.setChoices(buChoices, 'value', 'label', false);
+                }
+            });
+
+            // ============ LOAD COMPANIES ============
             $.ajax({
                 url: "{{ config('app.api_url') }}companies",
                 type: 'GET',
                 dataType: 'json',
                 success: function(response) {
-                    business_units = response;
-                    editCompanyId = new Choices("#editCompanyId", {
-                        removeItemButton: !0,
-                    })
-                    editCompanyId.clearChoices(); // This line is causing the error
-                    console.log("check" + response);
-                    editCompanyId.setChoices(response, 'id', 'name', false);
+                    const companyChoices = response.map(item => ({
+                        value: String(item.id),
+                        label: item.name
+                    }));
 
-                    CompanyId = new Choices("#CompanyId", {
-                        removeItemButton: !0,
-                    })
-                    CompanyId.clearChoices(); // This line is causing the error
-                    console.log("check" + response);
-                    CompanyId.setChoices(response, 'id', 'name', false);
+                    if (document.getElementById('editCompanyId')) {
+                        editCompanyId = new Choices("#editCompanyId", { removeItemButton: true });
+                        editCompanyId.clearChoices();
+                        editCompanyId.setChoices(companyChoices, 'value', 'label', false);
+                    }
 
-                    // Move the setChoiceByValue inside the success callback
+                    if (document.getElementById('CompanyId')) {
+                        CompanyId = new Choices("#CompanyId", { removeItemButton: true });
+                        CompanyId.clearChoices();
+                        CompanyId.setChoices(companyChoices, 'value', 'label', false);
+                    }
                 }
             });
         });
@@ -681,29 +581,25 @@
         function addDynamicInput(targetContainer) {
             inputCount++;
             const inputGroup = `
-                            <div class="row mb-2 dynamic-group" id="inputGroup-${inputCount}">
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control" name="extraField1[]" placeholder="Extra Field 1">
-                                </div>
-                                <div class="col-md-5">
-                                    <input type="text" class="form-control" name="extraField2[]" placeholder="Extra Field 2">
-                                </div>
-                                <div class="col-md-2 d-flex align-items-center">
-                                    <button type="button" class="btn btn-sm btn-danger removeBtn" data-id="${inputCount}">
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        `;
+                <div class="row mb-2 dynamic-group" id="inputGroup-${inputCount}">
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="extraField1[]" placeholder="Extra Field 1">
+                    </div>
+                    <div class="col-md-5">
+                        <input type="text" class="form-control" name="extraField2[]" placeholder="Extra Field 2">
+                    </div>
+                    <div class="col-md-2 d-flex align-items-center">
+                        <button type="button" class="btn btn-sm btn-danger removeBtn" data-id="${inputCount}">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            `;
             $(targetContainer).append(inputGroup);
         }
 
         $('#addMoreBtn').on('click', function() {
             addDynamicInput('#dynamicInputContainer');
-        });
-
-        $('#editAddMoreBtn').on('click', function() {
-            addDynamicInput('#editDynamicInputContainer');
         });
 
         $(document).on('click', '.removeBtn', function() {
@@ -712,6 +608,7 @@
         });
     });
 
+    // ============ HELPER FUNCTIONS ============
 
     async function loadPermissions(roleId) {
         try {
@@ -742,19 +639,36 @@
     }
 
     function applyBusinessUnitPermissionUI() {
-        // Example: toggle visibility of "Add New" if exists
         if (!hasPermission('business_unit', 'create')) {
-            $('#addNewBtn').hide(); // adjust selector to your add button
+            $('#addNewBtn').hide();
         } else {
             $('#addNewBtn').show();
         }
 
         if (!hasPermission('business_unit', 'update')) {
-            // remove Edit header if no update permission
             $('#business-unit-table thead tr th').filter(function() {
                 return $(this).text().trim() === 'Edit';
             }).remove();
         }
+    }
+
+    // Get value from a Choices instance, with fallback to DOM
+    function getChoiceValue(instance, elementId) {
+        if (instance && typeof instance.getValue === 'function') {
+            const v = instance.getValue(true);
+            if (Array.isArray(v)) return v.length ? v[0] : '';
+            return v ?? '';
+        }
+        const el = document.getElementById(elementId);
+        return el ? (el.value ?? '') : '';
+    }
+
+    function getValueOrDefault(id, defaultVal = "") {
+        const el = document.getElementById(id);
+        if (!el || typeof el.value !== "string") return defaultVal;
+        let val = el.value.trim();
+        if (!val || val === "undefined") return defaultVal;
+        return val;
     }
 
     function fetchBusinessUnits() {
@@ -774,10 +688,11 @@
         }
 
         $.ajax({
-            url:'{{Auth::user()->company_id}}'==0? "{{ config('app.api_url') }}business_units":"{{ config('app.api_url') }}business_units/company/{{Auth::user()->company_id}}",
+            url: '{{ Auth::user()->company_id }}' == 0 ?
+                "{{ config('app.api_url') }}business_units" :
+                "{{ config('app.api_url') }}business_units/company/{{ Auth::user()->company_id }}",
             method: "GET",
             success: function(data) {
-                // build columns dynamic based on update permission
                 const cols = [{
                         data: 'id',
                         defaultContent: '-'
@@ -807,12 +722,12 @@
                         searchable: false,
                         render: function(data, type, row) {
                             return `
-                            <a href="javascript:void(0);" 
-                               class="btn btn-sm btn-primary"  data-bs-toggle="offcanvas"
-                        data-bs-target="#editOffcanvas" aria-controls="offcanvasRight"
-                               onclick="editBusinessUnit(${row.id})">
-                               <i class="ri-pencil-fill"></i>
-                            </a>`;
+                                <a href="javascript:void(0);" 
+                                   class="btn btn-sm btn-primary" data-bs-toggle="offcanvas"
+                                   data-bs-target="#editOffcanvas" aria-controls="offcanvasRight"
+                                   onclick="editBusinessUnit(${row.id})">
+                                   <i class="ri-pencil-fill"></i>
+                                </a>`;
                         }
                     });
                 }
@@ -823,13 +738,12 @@
                     searchable: false,
                     render: function(data, type, row) {
                         const checked = data == 1 ? 'checked' : '';
-                        // optionally block toggle if no update permission
                         const disabled = !hasPermission('business_unit', 'update') ? 'disabled' : '';
                         return `
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" role="switch"
-                                onchange="updateBusinessUnitToggle(${row.id}, this)" ${checked} ${disabled}>
-                        </div>`;
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch"
+                                    onchange="updateBusinessUnitToggle(${row.id}, this)" ${checked} ${disabled}>
+                            </div>`;
                     }
                 });
 
@@ -883,40 +797,38 @@
     }
 
     function updateBusinessUnitToggle(id, element) {
-    console.log('TOGGLE CLICKED', id);
+        if (!hasPermission('business_unit', 'update')) {
+            showToast("No permission to change status", "warning");
+            $(element).prop('checked', !$(element).prop('checked'));
+            return;
+        }
 
-    if (!hasPermission('business_unit', 'update')) {
-        showToast("No permission to change status", "warning");
-        $(element).prop('checked', !$(element).prop('checked')); // revert checkbox
-        return;
+        const isChecked = $(element).prop('checked') ? 1 : 0;
+
+        const form = new FormData();
+        form.append("id", id);
+        form.append("active", isChecked);
+
+        $.ajax({
+            url: `{{ config('app.api_url') }}updatebustatus`,
+            method: "POST",
+            data: form,
+            processData: false,
+            contentType: false,
+            success: function() {
+                fetchBusinessUnits();
+                const message = isChecked ? "Business Unit activated successfully" : "Business Unit deactivated successfully";
+                const type = isChecked ? "success" : "warning";
+                showToast(message, type);
+            },
+            error: function() {
+                showToast("Failed to update Business Unit status", "danger");
+                $(element).prop('checked', !isChecked);
+            }
+        });
     }
 
-    const isChecked = $(element).prop('checked') ? 1 : 0;
-
-    const form = new FormData();
-    form.append("id", id);
-    form.append("active", isChecked);
-
-    $.ajax({
-        url: `{{ config('app.api_url') }}updatebustatus`,
-        method: "POST",
-        data: form,
-        processData: false,
-        contentType: false,
-        success: function() {
-            fetchBusinessUnits();
-            const message = isChecked ? "Business Unit activated successfully" : "Business Unit deactivated successfully";
-            const type = isChecked ? "success" : "warning";
-            showToast(message, type);
-        },
-        error: function() {
-            showToast("Failed to update Business Unit status", "danger");
-            $(element).prop('checked', !isChecked); // revert checkbox
-        }
-    });
-}
-
-function showToast(message, type = "info") {
+    function showToast(message, type = "info") {
         Toastify({
             text: message,
             duration: 3000,
@@ -942,140 +854,76 @@ function showToast(message, type = "info") {
         }
     }
 
+    // ============ CREATE ============
     function createData() {
         const form = new FormData(document.getElementById('createBusinessUnitForm'));
 
-        function getValueOrDefault(id, defaultVal = "") {
-            const el = document.getElementById(id);
-            if (!el || typeof el.value !== "string") return defaultVal;
-            let val = el.value.trim();
-            if (!val || val === "undefined") return defaultVal;
-            return val;
-        }
+        form.append("properties", "[]");
+        form.append("bu_user", "1");
+        form.append("status", "1");
+        form.append("name", getValueOrDefault("name"));
+        form.append("email", getValueOrDefault("email"));
+        form.append("phone", getValueOrDefault("phone"));
+        form.append("alternate_phone", getValueOrDefault("altPhone"));
+        form.append("country", getValueOrDefault("country"));
+        form.append("state", getValueOrDefault("state"));
+        form.append("city", getValueOrDefault("city"));
+        form.append("address_1", getValueOrDefault("address1"));
+        form.append("address_2", getValueOrDefault("address2"));
+        form.append("longitude", getValueOrDefault("longitude"));
+        form.append("latitude", getValueOrDefault("latitude"));
+        form.append("zipcode", getValueOrDefault("zipcode"));
 
-        function getIntValue(id) {
-            const el = document.getElementById(id);
-            if (!el) return 0;
-            const val = parseInt(el.value);
-            return isNaN(val) ? 0 : val;
-        }
+        // Choices-managed select fields
+        form.append("marketing_manager", getChoiceValue(Manager, "marketingManager"));
+        form.append("store_manager", getChoiceValue(storeManager, "storeManager"));
+        form.append("reponsible_user", getChoiceValue(responsible, "responsible"));
+        form.append("responsible", getChoiceValue(responsible, "responsible"));
+        form.append("parent_bu_id", getChoiceValue(parentBU, "parentBU"));
 
-        // if ($('#editBusinessUnitId').val() != "") {
-            form.append("properties", "[]");
-            form.append("bu_user", "1");
-            form.append("status", "1");
-            form.append("name", getValueOrDefault("name"));
-            form.append("email", getValueOrDefault("email"));
-            form.append("phone", getValueOrDefault("phone"));
-            form.append("alternate_phone", getValueOrDefault("altPhone"));
-            form.append("country", getValueOrDefault("country"));
-            form.append("state", getValueOrDefault("state"));
-            form.append("city", getValueOrDefault("city"));
-            form.append("address_1", getValueOrDefault("address1"));
-            form.append("address_2", getValueOrDefault("address2"));
-            form.append("longitude", getValueOrDefault("longitude"));
-            form.append("latitude", getValueOrDefault("latitude"));
-            form.append("zipcode", getValueOrDefault("zipcode"));
-            form.append("marketing_manager", getIntValue("marketingManager"));
-            form.append("store_manager", getIntValue("storeManager"));
-            form.append("reponsible_user", getIntValue("responsible"));
-            form.append("parent_bu_id", getIntValue("parentBU"));
-            form.append("vendor_r", getIntValue("vendorRequired"));
-            form.append("customer_r", getIntValue("accountRequired"));
-            form.append("ticket_represented", $('#ticketRepresented').val() || ''); 
-            form.append("properties", "[]");
-            form.append("bu_user", "1");
-            form.append("responsible", getIntValue("responsibleUser"));
-            form.append("company_id", $('#CompanyId').val() ?? '{{Auth::user()->company_id}}');
+        // Plain selects
+        form.append("vendor_r", getValueOrDefault("vendorRequired"));
+        form.append("customer_r", getValueOrDefault("accountRequired"));
 
-            $.ajax({
-                url: "{{ config('app.api_url') }}business_units",
-                method: "POST",
-                data: form,
-                processData: false,
-                contentType: false,
-                timeout: 60000,
-                success: function(response) {
-                    showToast("Business Unit created successfully", "success");
+        form.append("ticket_represented", $('#ticketRepresented').val() || '');
+        form.append("company_id", $('#CompanyId').val() ?? '{{ Auth::user()->company_id }}');
 
-                    document.getElementById("createBusinessUnitForm").reset();
+        $.ajax({
+            url: "{{ config('app.api_url') }}business_units",
+            method: "POST",
+            data: form,
+            processData: false,
+            contentType: false,
+            timeout: 60000,
+            success: function(response) {
+                showToast("Business Unit created successfully", "success");
 
-                    const offcanvasEl = document.getElementById("offcanvasRight");
-                    const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl) || new bootstrap.Offcanvas(offcanvasEl);
-                    offcanvas.hide();
+                document.getElementById("createBusinessUnitForm").reset();
 
-                    setTimeout(() => {
-                        fetchBusinessUnits();
-                    }, 500);
-                },
-                error: function(xhr, status, error) {
-                    console.error("AJAX Error:", {
-                        response: xhr.responseText,
-                        status,
-                        error
-                    });
-                    showToast("Failed to create Business Unit: " + error, "danger");
-                }
-            });
-        // } else {
-        //     form.append("properties", "[]");
-        //     form.append("bu_user", "1");
-        //     form.append("status", "1");
-        //     form.append("name", getValueOrDefault("editName"));
-        //     form.append("email", getValueOrDefault("editEmail"));
-        //     form.append("phone", getValueOrDefault("editPhone"));
-        //     form.append("alternate_phone", getValueOrDefault("editAltPhone"));
-        //     form.append("country", getValueOrDefault("editCountry"));
-        //     form.append("state", getValueOrDefault("editState"));
-        //     form.append("city", getValueOrDefault("editCity"));
-        //     form.append("address_1", getValueOrDefault("editAddress1"));
-        //     form.append("address_2", getValueOrDefault("editAddress2"));
-        //     form.append("longitude", getValueOrDefault("editLongitude"));
-        //     form.append("latitude", getValueOrDefault("editLatitude"));
-        //     form.append("zipcode", getValueOrDefault("editZipcode"));
-        //     form.append("marketing_manager", getIntValue("editMarketingManager"));
-        //     form.append("store_manager", getIntValue("editStoreManager"));
-        //     form.append("reponsible_user", getIntValue("editResponsible"));
-        //     form.append("parent_bu_id", getIntValue("editParentBU"));
-        //     form.append("vendor_r", getIntValue("editVendorRequired"));
-        //     form.append("customer_r", getIntValue("editAccountRequired"));
-        //     form.append("properties", "[]");
-        //     form.append("bu_user", "1");
-        //     form.append("responsible", getIntValue("responsibleUser"));
-        //     form.append("company_id", $('#editCompanyId').val() ?? '{{Auth::user()->company_id}}');
+                // Reset Choices
+                if (Manager) Manager.removeActiveItems();
+                if (storeManager) storeManager.removeActiveItems();
+                if (responsible) responsible.removeActiveItems();
+                if (parentBU) parentBU.removeActiveItems();
 
-        //     $.ajax({
-        //         url: "{{ config('app.api_url') }}business_units",
-        //         method: "POST",
-        //         data: form,
-        //         processData: false,
-        //         contentType: false,
-        //         timeout: 60000,
-        //         success: function(response) {
-        //             showToast("Business Unit created successfully", "success");
+                const offcanvasEl = document.getElementById("offcanvasRight");
+                const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl) || new bootstrap.Offcanvas(offcanvasEl);
+                offcanvas.hide();
 
-        //             document.getElementById("createBusinessUnitForm").reset();
-
-        //             const offcanvasEl = document.getElementById("offcanvasRight");
-        //             const offcanvas = bootstrap.Offcanvas.getInstance(offcanvasEl) || new bootstrap.Offcanvas(offcanvasEl);
-        //             offcanvas.hide();
-
-        //             setTimeout(() => {
-        //                 fetchBusinessUnits();
-        //             }, 500);
-        //         },
-        //         error: function(xhr, status, error) {
-        //             console.error("AJAX Error:", {
-        //                 response: xhr.responseText,
-        //                 status,
-        //                 error
-        //             });
-        //             showToast("Failed to create Business Unit: " + error, "danger");
-        //         }
-        //     });
-        // }
+                setTimeout(() => fetchBusinessUnits(), 500);
+            },
+            error: function(xhr, status, error) {
+                console.error("AJAX Error:", {
+                    response: xhr.responseText,
+                    status,
+                    error
+                });
+                showToast("Failed to create Business Unit: " + error, "danger");
+            }
+        });
     }
 
+    // ============ EDIT ============
     function editBusinessUnit(id) {
         $.ajax({
             url: `{{ config('app.api_url') }}business_units/${id}`,
@@ -1084,7 +932,7 @@ function showToast(message, type = "info") {
                 console.log("response", response);
                 const bu = response.data?.[0] ?? response[0];
 
-                // Set basic fields
+                // Basic fields
                 $('#editBusinessUnitId').val(bu.id);
                 $('#editName').val(bu.name || '');
                 $('#editEmail').val(bu.email || '');
@@ -1098,27 +946,49 @@ function showToast(message, type = "info") {
                 $('#editLongitude').val(bu.longitude || '');
                 $('#editLatitude').val(bu.latitude || '');
                 $('#editZipcode').val(bu.zipcode || '');
-                editMarketingManager.setChoiceByValue(bu.marketing_manager || '');
-                editResponsible.setChoiceByValue(bu.reponsible_user || bu.responsible || bu.bu_user || '');
-                editStoreManager.setChoiceByValue(bu.store_manager || '');
-                editCompanyId.setChoiceByValue(bu.company_id || 1);
-                editbu.setChoiceByValue(bu.parent_bu_id  || 1);
-                
+                $('#editTicketRepresented').val(bu.ticket_represented || '');
+
+                // Choices-based selects — convert to STRING
+                const setChoice = (instance, value) => {
+                    if (!instance) return;
+                    instance.removeActiveItems();
+                    if (value !== null && value !== undefined && value !== '') {
+                        try {
+                            instance.setChoiceByValue(String(value));
+                        } catch (e) {
+                            console.warn("setChoiceByValue failed for", value, e);
+                        }
+                    }
+                };
+
+                setChoice(editMarketingManager, bu.marketing_manager);
+                setChoice(editResponsible, bu.reponsible_user);
+                setChoice(editStoreManager, bu.store_manager);
+                if (editCompanyId) setChoice(editCompanyId, bu.company_id);
+                setChoice(editbu, bu.parent_bu_id);
+
+                // Plain selects
                 $('#editVendorRequired').val(bu.vendor_r || 'no').trigger('change');
                 $('#editAccountRequired').val(bu.customer_r || 'no').trigger('change');
-                $('#editTicketRepresented').val(bu.ticket_represented || '');
-           
-                
 
-                // Handle properties JSON
+                // Properties JSON
                 $('#editProperties').val(bu.properties ? JSON.stringify(bu.properties) : '[]');
 
-                // Set active status
+                // Active
                 const statusValue = bu.status !== undefined ? bu.status : bu.active;
                 $('#editActiveStatus').prop('checked', statusValue == 1);
 
+                // Move map marker if coordinates exist
+                if (bu.latitude && bu.longitude && editMap && editMarker) {
+                    const pos = {
+                        lat: parseFloat(bu.latitude),
+                        lng: parseFloat(bu.longitude)
+                    };
+                    editMap.setCenter(pos);
+                    editMarker.setPosition(pos);
+                }
 
-                // Show the edit offcanvas
+                // Show offcanvas
                 const offcanvasEl = document.getElementById("editOffcanvas");
                 const instance = bootstrap.Offcanvas.getOrCreateInstance(offcanvasEl);
                 instance.show();
@@ -1130,8 +1000,8 @@ function showToast(message, type = "info") {
         });
     }
 
+    // ============ UPDATE ============
     function updateData(event) {
-        // Prevent default only if event exists
         if (event && typeof event.preventDefault === 'function') {
             event.preventDefault();
         }
@@ -1142,12 +1012,11 @@ function showToast(message, type = "info") {
             return (typeof value === 'string' || value instanceof String) ? value.trim() : '';
         };
 
-        if('{{Auth::user()->id}}'==1){
-            const companyId = $('#editCompanyId').val();
-
-        }else{
-            const companyId = '{{ Auth::user()->company_id }}'
-
+        let companyId;
+        if ('{{ Auth::user()->id }}' == 1) {
+            companyId = $('#editCompanyId').val();
+        } else {
+            companyId = '{{ Auth::user()->company_id }}';
         }
 
         if (!companyId) {
@@ -1156,7 +1025,6 @@ function showToast(message, type = "info") {
         }
 
         const data = {
-
             name: safeTrim($('#editName').val()),
             email: safeTrim($('#editEmail').val()),
             phone: safeTrim($('#editPhone').val()),
@@ -1168,20 +1036,21 @@ function showToast(message, type = "info") {
             address_2: safeTrim($('#editAddress2').val()),
             longitude: safeTrim($('#editLongitude').val()),
             latitude: safeTrim($('#editLatitude').val()),
-            marketing_manager: $('#editMarketingManager').val(),
-            reponsible_user: $('#editResponsible').val(),
-            responsible: $('#editResponsible').val(),
-            bu_user: $('#editResponsible').val(),
-            store_manager: $('#editStoreManager').val(),
+
+            marketing_manager: getChoiceValue(editMarketingManager, "editMarketingManager"),
+            reponsible_user: getChoiceValue(editResponsible, "editResponsible"),
+            responsible: getChoiceValue(editResponsible, "editResponsible"),
+            bu_user: getChoiceValue(editResponsible, "editResponsible"),
+            store_manager: getChoiceValue(editStoreManager, "editStoreManager"),
             company_id: companyId,
-            parent_bu_id: $('#editParentBU').val(),
+            parent_bu_id: getChoiceValue(editbu, "editParentBU"),
             zipcode: safeTrim($('#editZipcode').val()),
             status: $('#editActiveStatus').is(':checked') ? 1 : 0,
             active: $('#editActiveStatus').is(':checked') ? 1 : 0,
             properties: $('#editProperties').val() || '[]',
             vendor_r: $('#editVendorRequired').val() || 'no',
             customer_r: $('#editAccountRequired').val() || 'no',
-            ticket_represented: $('#editTicketRepresented').val() || '', 
+            ticket_represented: $('#editTicketRepresented').val() || '',
         };
 
         if (!data.name || !data.email) {
@@ -1198,7 +1067,7 @@ function showToast(message, type = "info") {
             success: function(response) {
                 showToast("Business Unit updated successfully", "success");
                 const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById("editOffcanvas"));
-                offcanvas.hide();
+                if (offcanvas) offcanvas.hide();
                 setTimeout(fetchBusinessUnits, 500);
             },
             error: function(xhr) {
@@ -1214,13 +1083,14 @@ function showToast(message, type = "info") {
         });
     }
 
+    // ============ MAP ============
     function initMap() {
         const defaultLocation = {
             lat: 24.8607,
             lng: 67.0011
         };
 
-        // --------- CREATE FORM MAP ---------
+        // CREATE MAP
         const createMapElement = document.getElementById("map");
         if (createMapElement) {
             createMap = new google.maps.Map(createMapElement, {
@@ -1243,15 +1113,13 @@ function showToast(message, type = "info") {
             createSearchBox.addListener("places_changed", () => {
                 const places = createSearchBox.getPlaces();
                 if (!places || places.length === 0) return;
-
                 const place = places[0];
                 if (!place.geometry || !place.geometry.location) return;
-
                 updateLocation(place.geometry.location, 'create');
             });
         }
 
-        // --------- EDIT FORM MAP ---------
+        // EDIT MAP
         const editMapElement = document.getElementById("editMap");
         if (editMapElement) {
             editMap = new google.maps.Map(editMapElement, {
@@ -1274,10 +1142,8 @@ function showToast(message, type = "info") {
             editSearchBox.addListener("places_changed", () => {
                 const places = editSearchBox.getPlaces();
                 if (!places || places.length === 0) return;
-
                 const place = places[0];
                 if (!place.geometry || !place.geometry.location) return;
-
                 updateLocation(place.geometry.location, 'edit');
             });
         }
@@ -1298,15 +1164,6 @@ function showToast(message, type = "info") {
     }
 
     window.initMap = initMap;
-
-    // function updateBusinessUnitToggle(id, element) {
-    //     if (!hasPermission('business_unit', 'update')) {
-    //         showToast("No permission to change status", "warning");
-    //         // revert checkbox
-    //         $(element).prop('checked', !$(element).prop('checked'));
-    //         return;
-    //     }
-    // }
 </script>
 
 <script src="{{ URL::asset('build/js/app.js') }}"></script>

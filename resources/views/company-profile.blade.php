@@ -2263,6 +2263,213 @@
     gap: 2px;
 }
 
+/* ===== EXCEL IMPORT SECTION ===== */
+.excel-import-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.import-card {
+    display: flex;
+    gap: 1.25rem;
+    padding: 1.5rem;
+    background: var(--light-bg);
+    border-radius: 14px;
+    border: 1px solid var(--card-border);
+    transition: all 0.3s ease;
+}
+
+.import-card:hover {
+    background: white;
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(74, 108, 247, 0.1);
+    transform: translateY(-3px);
+}
+
+.import-card-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+}
+
+.import-card-icon.tickets {
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.15), rgba(59, 130, 246, 0.05));
+    color: #3b82f6;
+}
+
+.import-card-icon.business-units {
+    background: linear-gradient(135deg, rgba(20, 184, 166, 0.15), rgba(20, 184, 166, 0.05));
+    color: #14b8a6;
+}
+
+.import-card-icon.users {
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(139, 92, 246, 0.05));
+    color: #8b5cf6;
+}
+
+.import-card-icon.group-designation {
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.15), rgba(245, 158, 11, 0.05));
+    color: #f59e0b;
+}
+
+.import-card-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.import-card-title {
+    font-weight: 700;
+    color: var(--dark-color);
+    margin-bottom: 0.25rem;
+    font-size: 1.1rem;
+}
+
+.import-card-desc {
+    color: var(--secondary-color);
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.import-card-actions {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* File Input Styling */
+.file-input-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 140px;
+}
+
+.file-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.file-input-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    background: white;
+    border: 2px dashed var(--card-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+}
+
+.file-input:hover + .file-input-label,
+.file-input:focus + .file-input-label {
+    border-color: var(--primary-color);
+    background: rgba(74, 108, 247, 0.05);
+}
+
+.file-input-label i {
+    font-size: 1rem;
+    color: var(--primary-color);
+}
+
+.file-input-label .file-name {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100px;
+}
+
+/* Upload Button */
+.btn-import {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.25rem;
+    background: linear-gradient(135deg, var(--primary-color), #6a11cb);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.btn-import:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(74, 108, 247, 0.3);
+}
+
+.btn-import:active {
+    transform: translateY(0);
+}
+
+.btn-import:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-import i {
+    font-size: 1rem;
+}
+
+/* File selected state */
+.file-input-label.has-file {
+    border-color: var(--success-color);
+    background: rgba(16, 185, 129, 0.05);
+}
+
+.file-input-label.has-file i {
+    color: var(--success-color);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .excel-import-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .import-card {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .import-card-icon {
+        margin: 0 auto;
+    }
+
+    .import-card-actions {
+        flex-direction: column;
+    }
+
+    .file-input-wrapper {
+        width: 100%;
+    }
+
+    .btn-import {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
 </style>
 @endsection
 
@@ -2653,7 +2860,120 @@
                             </table>
                         </div>
                     </div>
+                                    <!-- Excel Import Section -->
+<div class="profile-section" id="excelImportSection">
+    <div class="section-header">
+        <h3 class="section-title">
+            <i class="bi bi-file-earmark-excel"></i>
+            Bulk Data Import
+        </h3>
+        <a href="#" class="section-action" id="downloadTemplateBtn">
+            <i class="bi bi-download"></i>
+            Download Templates
+        </a>
+    </div>
+
+    <div class="excel-import-grid">
+        <!-- Tickets Import Card -->
+        <div class="import-card" data-type="tickets">
+            <div class="import-card-icon tickets">
+                <i class="bi bi-ticket-detailed"></i>
+            </div>
+            <div class="import-card-content">
+                <h5 class="import-card-title">Tickets</h5>
+                <p class="import-card-desc">Import tickets in bulk from Excel file</p>
+                <div class="import-card-actions">
+                    <div class="file-input-wrapper">
+                        <input type="file" class="file-input" id="ticketsFile" accept=".xlsx,.xls,.csv">
+                        <label for="ticketsFile" class="file-input-label">
+                            <i class="bi bi-cloud-upload"></i>
+                            <span class="file-name">Choose file</span>
+                        </label>
+                    </div>
+                    <button type="button" class="btn-import" onclick="uploadExcel('tickets')">
+                        <i class="bi bi-upload"></i>
+                        Upload
+                    </button>
                 </div>
+            </div>
+        </div>
+
+        <!-- Business Units Import Card -->
+        <div class="import-card" data-type="business_units">
+            <div class="import-card-icon business-units">
+                <i class="bi bi-building"></i>
+            </div>
+            <div class="import-card-content">
+                <h5 class="import-card-title">Business Units</h5>
+                <p class="import-card-desc">Import business units in bulk</p>
+                <div class="import-card-actions">
+                    <div class="file-input-wrapper">
+                        <input type="file" class="file-input" id="businessUnitsFile" accept=".xlsx,.xls,.csv">
+                        <label for="businessUnitsFile" class="file-input-label">
+                            <i class="bi bi-cloud-upload"></i>
+                            <span class="file-name">Choose file</span>
+                        </label>
+                    </div>
+                    <button type="button" class="btn-import" onclick="uploadExcel('business_units')">
+                        <i class="bi bi-upload"></i>
+                        Upload
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users Import Card -->
+        <div class="import-card" data-type="users">
+            <div class="import-card-icon users">
+                <i class="bi bi-people"></i>
+            </div>
+            <div class="import-card-content">
+                <h5 class="import-card-title">Users</h5>
+                <p class="import-card-desc">Import users in bulk from Excel</p>
+                <div class="import-card-actions">
+                    <div class="file-input-wrapper">
+                        <input type="file" class="file-input" id="usersFile" accept=".xlsx,.xls,.csv">
+                        <label for="usersFile" class="file-input-label">
+                            <i class="bi bi-cloud-upload"></i>
+                            <span class="file-name">Choose file</span>
+                        </label>
+                    </div>
+                    <button type="button" class="btn-import" onclick="uploadExcel('users')">
+                        <i class="bi bi-upload"></i>
+                        Upload
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Group Designation Import Card -->
+        <div class="import-card" data-type="group_designation">
+            <div class="import-card-icon group-designation">
+                <i class="bi bi-diagram-3"></i>
+            </div>
+            <div class="import-card-content">
+                <h5 class="import-card-title">Group Designation</h5>
+                <p class="import-card-desc">Import group designations in bulk</p>
+                <div class="import-card-actions">
+                    <div class="file-input-wrapper">
+                        <input type="file" class="file-input" id="groupDesignationFile" accept=".xlsx,.xls,.csv">
+                        <label for="groupDesignationFile" class="file-input-label">
+                            <i class="bi bi-cloud-upload"></i>
+                            <span class="file-name">Choose file</span>
+                        </label>
+                    </div>
+                    <button type="button" class="btn-import" onclick="uploadExcel('group_designation')">
+                        <i class="bi bi-upload"></i>
+                        Upload
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                </div>
+
+
 
                 <div class="col-lg-4">
                     <!-- Subscription Card -->
@@ -3784,7 +4104,7 @@ function setupSendMessageButton() {
         };
         localStorage.setItem('chatCompany', JSON.stringify(companyInfo));
 
-        const chatOffcanvas = new bootstrap.Offcanvas(document.getElementById('chatOffcanvas'));
+        const chatOffcanvas = new bootstrap.Offcanvas(document.getElementById(''));
         chatOffcanvas.show();
 
         // showToast(`Chat opened for ${company.name}`, 'info');
@@ -4191,12 +4511,13 @@ function setupSendMessageButton() {
             url: "{{ config('app.api_url') }}companies/" + companyId,
             method: "GET",
             success: function(companyResponse) {
+                console.log("Company response:", companyResponse);
 
                 if (companyId == {{ Auth::user()->company_id ?? 0 }}) {
     // Agar updated logo hai to sidebar image change karo
-    if (response.profile_url) {
-        $('.logo-light .logo-lg img').attr('src', response.profile_url);
-        $('.logo-dark .logo-lg img').attr('src', response.profile_url);
+    if (companyResponse['profile_url']) {
+        $('.logo-light .logo-lg img').attr('src', companyResponse.profile_url);
+        $('.logo-dark .logo-lg img').attr('src', companyResponse.profile_url);
     }
 }
                 let company;
@@ -7606,6 +7927,310 @@ $('#securityCode').on('input', function() {
         }
     }
 
+    // ===== EXCEL IMPORT FUNCTIONS =====
+
+/**
+ * Upload Excel file for bulk import
+ * @param {string} type - The type of data to import (tickets, business_units, users, group_designation)
+ */
+function uploadExcel(type) {
+    // Map type to file input ID
+    const fileInputMap = {
+        'tickets': 'ticketsFile',
+        'business_units': 'businessUnitsFile',
+        'users': 'usersFile',
+        'group_designation': 'groupDesignationFile'
+    };
+
+    // ✅ Map type to API endpoint (tere routes ke hisaab se)
+    const endpointMap = {
+        'tickets': 'tickets_api',
+        'business_units': 'bu_api',
+        'users': 'user_api',
+        'group_designation': 'group_api'
+    };
+
+    const fileInputId = fileInputMap[type];
+    const endpoint = endpointMap[type];
+
+    if (!fileInputId || !endpoint) {
+        showToast('Invalid import type', 'error');
+        return;
+    }
+
+    const fileInput = document.getElementById(fileInputId);
+    const file = fileInput.files[0];
+
+    // Validation
+    if (!file) {
+        showToast('Please select a file first', 'error');
+        return;
+    }
+
+    // Check file extension
+    const validExtensions = ['.xlsx', '.xls', '.csv'];
+    const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
+
+    if (!validExtensions.includes(fileExtension)) {
+        showToast('Please upload a valid Excel file (.xlsx, .xls, or .csv)', 'error');
+        return;
+    }
+
+    // Check file size (max 10MB)
+    const maxSize = 10 * 1024 * 1024;
+    if (file.size > maxSize) {
+        showToast('File size exceeds 10MB limit', 'error');
+        return;
+    }
+
+    // ===== ✅ USER ID LOGIC =====
+    let targetUserId;
+
+    if (isAdmin) {
+        // ✅ Admin: Apni khud ki user ID use karo
+        // (Agar aapke paas koi selected user dropdown hai to yahan use kar sakte ho)
+        targetUserId = {{ auth()->id() ?? 1 }};
+    } else {
+        // ✅ Non-Admin: Apni khud ki user ID
+        targetUserId = {{ auth()->id() ?? 1 }};
+    }
+
+    console.log('=== UPLOAD EXCEL DEBUG ===');
+    console.log('Type:', type);
+    console.log('Is Admin:', isAdmin);
+    console.log('Target User ID:', targetUserId);
+    console.log('File:', file.name);
+    console.log('Endpoint:', endpoint);
+    console.log('==========================');
+
+    // Create FormData
+    const formData = new FormData();
+    formData.append('excel_file', file);
+    formData.append('user_id', targetUserId);  // ✅ user_id bhejo (company_id nahi)
+    formData.append('uploaded_by', {{ auth()->id() ?? 1 }});
+
+    // Find the upload button and show loading state
+    const uploadBtn = document.querySelector(`.import-card[data-type="${type}"] .btn-import`);
+    const originalBtnHtml = uploadBtn.innerHTML;
+
+    uploadBtn.disabled = true;
+    uploadBtn.innerHTML = `
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Uploading...
+    `;
+
+    // Get CSRF token if needed
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || '';
+
+    // Make API call
+    $.ajax({
+        url: `{{ config('app.api_url') }}${endpoint}`,
+        method: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'Accept': 'application/json'
+        },
+        success: function(response) {
+            // Reset button
+            uploadBtn.disabled = false;
+            uploadBtn.innerHTML = originalBtnHtml;
+
+            // Reset file input
+            fileInput.value = '';
+            updateFileNameLabel(fileInputId);
+
+            // Show success message
+            const successCount = response.imported_count || response.success_count || 0;
+            const failedCount = response.failed_count || response.error_count || 0;
+
+            let message = response.message || `Successfully imported ${successCount} record(s)`;
+
+            if (failedCount > 0) {
+                message += `. ${failedCount} record(s) failed.`;
+                showToast(message, 'warning');
+            } else {
+                showToast(message, 'success');
+            }
+
+            // Refresh data based on type
+            if (type === 'tickets') {
+                fetchAllTickets();
+                if (currentCompanyId) {
+                    updateTicketCount(currentCompanyId);
+                }
+            } else if (type === 'business_units') {
+                fetchAllBusinessUnits();
+                if (currentCompanyId) {
+                    updateBusinessUnitCount(currentCompanyId);
+                }
+            } else if (type === 'users') {
+                // Refresh users if you have a function
+            }
+
+            console.log('Import response:', response);
+        },
+        error: function(xhr) {
+            // Reset button
+            uploadBtn.disabled = false;
+            uploadBtn.innerHTML = originalBtnHtml;
+
+            // Parse error message
+            let errorMessage = 'Failed to import file. Please try again.';
+
+            try {
+                const response = JSON.parse(xhr.responseText);
+                if (response.message) {
+                    errorMessage = response.message;
+                } else if (response.error) {
+                    errorMessage = response.error;
+                }
+
+                if (response.errors) {
+                    const errorFields = Object.keys(response.errors);
+                    if (errorFields.length > 0) {
+                        errorMessage = response.errors[errorFields[0]][0];
+                    }
+                }
+            } catch (e) {
+                if (xhr.status === 413) {
+                    errorMessage = 'File is too large. Please upload a smaller file.';
+                } else if (xhr.status === 415) {
+                    errorMessage = 'Unsupported file type. Please upload an Excel file.';
+                } else if (xhr.status === 404) {
+                    errorMessage = 'API endpoint not found. Please check the route.';
+                } else if (xhr.status === 422) {
+                    errorMessage = 'Validation failed. Please check your file.';
+                } else if (xhr.status === 500) {
+                    errorMessage = 'Server error. Please try again later.';
+                }
+            }
+
+            showToast(errorMessage, 'error');
+            console.error('Import error:', xhr.responseText);
+        }
+    });
+}
+
+/**
+ * Update file name label when file is selected
+ * @param {string} inputId - The ID of the file input
+ */
+function updateFileNameLabel(inputId) {
+    const fileInput = document.getElementById(inputId);
+    const label = fileInput.nextElementSibling;
+    const fileNameSpan = label.querySelector('.file-name');
+
+    if (fileInput.files && fileInput.files[0]) {
+        const fileName = fileInput.files[0].name;
+        fileNameSpan.textContent = fileName.length > 15
+            ? fileName.substring(0, 12) + '...'
+            : fileName;
+        label.classList.add('has-file');
+    } else {
+        fileNameSpan.textContent = 'Choose file';
+        label.classList.remove('has-file');
+    }
+}
+
+/**
+ * Download Excel template for import
+ * @param {string} type - The type of template to download
+ */
+function downloadTemplate(type) {
+    // ✅ Files tumhare public/excel_format folder mein hain
+    const templateMap = {
+        'tickets': 'excel_format/tickets.xlsx',
+        'business_units': 'excel_format/business_units.xlsx',
+        'users': 'excel_format/users.xlsx',
+        'group_designation': 'excel_format/group_designation.xlsx'
+    };
+
+    const filePath = templateMap[type];
+    
+    if (!filePath) {
+        showToast('Template not available', 'error');
+        return;
+    }
+
+    // ✅ Laravel base URL use karo (public folder se direct)
+    const downloadUrl = `{{ url('/') }}/${filePath}`;
+
+    showToast('Downloading template...', 'info');
+
+    // Download using anchor tag (better than window.open for downloads)
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = filePath.split('/').pop(); // filename extract karo
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Optional: Success message after delay
+    setTimeout(() => {
+        showToast('Template downloaded successfully', 'success');
+    }, 500);
+}
+
+// ===== FILE INPUT EVENT LISTENERS =====
+document.addEventListener('DOMContentLoaded', function() {
+    // Add change listeners to all file inputs
+    const fileInputs = [
+        'ticketsFile',
+        'businessUnitsFile',
+        'usersFile',
+        'groupDesignationFile'
+    ];
+
+    fileInputs.forEach(inputId => {
+        const input = document.getElementById(inputId);
+        if (input) {
+            input.addEventListener('change', function() {
+                updateFileNameLabel(inputId);
+            });
+        }
+    });
+
+    // Download templates button - show dropdown
+    const downloadBtn = document.getElementById('downloadTemplateBtn');
+    if (downloadBtn) {
+        downloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            Swal.fire({
+                title: 'Download Templates',
+                html: `
+                    <div class="text-start">
+                        <p class="text-muted mb-3">Select a template to download:</p>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-outline-primary text-start" onclick="downloadTemplate('tickets'); Swal.close();">
+                                <i class="bi bi-ticket-detailed me-2"></i>
+                                Tickets Template
+                            </button>
+                            <button class="btn btn-outline-primary text-start" onclick="downloadTemplate('business_units'); Swal.close();">
+                                <i class="bi bi-building me-2"></i>
+                                Business Units Template
+                            </button>
+                            <button class="btn btn-outline-primary text-start" onclick="downloadTemplate('users'); Swal.close();">
+                                <i class="bi bi-people me-2"></i>
+                                Users Template
+                            </button>
+                            <button class="btn btn-outline-primary text-start" onclick="downloadTemplate('group_designation'); Swal.close();">
+                                <i class="bi bi-diagram-3 me-2"></i>
+                                Group Designation Template
+                            </button>
+                        </div>
+                    </div>
+                `,
+                showConfirmButton: false,
+                showCloseButton: true,
+                width: '400px'
+            });
+        });
+    }
+});
  // ✅ FUNCTION TO UPDATE MONTHLY BAR CHART - WITH STATUS AMOUNTS
 function updateInvoiceBarChart() {
     if (!currentCompanyId) {

@@ -1777,11 +1777,18 @@ P
                         }
                     },
                     
-                    {
-                        data: 'ticketID',
-                        title: ticketLabel + ' NO ',
-                        render: d => d ? d : 'N/A'
-                    },
+                   {
+                    data: 'id',
+                    title: ticketLabel + ' NO ',
+                    render: function(d, type, row) {
+                        if (!d) return 'N/A';
+                        const buName = (row.bu_name || '').toString().trim().toLowerCase();
+                        if (buName === 'operation' || buName === 'operations') {
+                            return 'OPT-' + d;
+                        }
+                        return d;
+                    }
+                },
                     {
                         data: 'title',
                         title: 'Title',

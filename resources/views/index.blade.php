@@ -364,6 +364,76 @@
             padding: 1rem;
             color: #6c757d;
         }
+
+        /* ✅ Date Picker - Hover & Click Effects for Offcanvas */
+#filterFromDate, #filterToDate {
+    height: 38px !important;
+    padding: 6px 12px !important;
+    font-size: 14px !important;
+    border-radius: 6px !important;
+    border: 1px solid #ced4da !important;
+    background-color: #fff !important;
+    transition: all 0.3s ease-in-out !important;
+    cursor: pointer !important;
+    width: 100% !important;
+}
+
+/* ✅ Hover Effect */
+#filterFromDate:hover, #filterToDate:hover {
+    border-color: #86b7fe !important;
+    box-shadow: 0 4px 12px rgba(13, 110, 253, 0.2) !important;
+    background-color: #f8f9fa !important;
+    transform: translateY(-2px) !important;
+}
+
+/* ✅ Focus Effect */
+#filterFromDate:focus, #filterToDate:focus {
+    border-color: #0d6efd !important;
+    outline: 0 !important;
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25) !important;
+    background-color: #fff !important;
+}
+
+/* ✅ Active/Click Effect */
+#filterFromDate:active, #filterToDate:active {
+    transform: scale(0.98) !important;
+    box-shadow: 0 2px 4px rgba(13, 110, 253, 0.15) !important;
+}
+
+/* ✅ Calendar Icon Style */
+#filterFromDate::-webkit-calendar-picker-indicator,
+#filterToDate::-webkit-calendar-picker-indicator {
+    cursor: pointer !important;
+    padding: 6px !important;
+    border-radius: 4px !important;
+    transition: all 0.3s ease !important;
+    background-color: transparent !important;
+}
+
+#filterFromDate::-webkit-calendar-picker-indicator:hover,
+#filterToDate::-webkit-calendar-picker-indicator:hover {
+    background-color: rgba(13, 110, 253, 0.1) !important;
+    transform: scale(1.15) !important;
+}
+
+/* ✅ Placeholder Text Color */
+#filterFromDate::-webkit-input-placeholder,
+#filterToDate::-webkit-input-placeholder {
+    color: #6c757d !important;
+    opacity: 0.7 !important;
+}
+
+#filterFromDate::-moz-placeholder,
+#filterToDate::-moz-placeholder {
+    color: #6c757d !important;
+    opacity: 0.7 !important;
+}
+
+/* ✅ Date Picker when value is empty */
+#filterFromDate:invalid::-webkit-datetime-edit,
+#filterToDate:invalid::-webkit-datetime-edit {
+    color: #6c757d !important;
+}
     </style>
 </head>
 
@@ -569,6 +639,7 @@
                                         <th>Priority</th>
                                         <th>Impact</th>
                                         <th>Created At</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -656,43 +727,49 @@
                     <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
-                    <form id="filterForm">
-                        <!-- Select Account -->
-                        <div class="mb-3">
-                            <label for="selectAccount" class="form-label text-muted fw-bold">Select Account</label>
-                            <select class="form-select" name="selectAccount" id="selectAccount">
-                                <option value="">Select Account</option>
-                            </select>
-                        </div>
+    <form id="filterForm">
+        <!-- Select Account -->
+        <div class="mb-3">
+            <label for="selectAccount" class="form-label text-muted fw-bold">Select Account</label>
+            <select class="form-select" name="selectAccount" id="selectAccount">
+                <option value="">Select Account</option>
+            </select>
+        </div>
 
-                        <!-- Date Range -->
-                        <div class="mb-3">
-                            <label class="form-label text-muted fw-bold">Date Range</label>
-                            <input type="text" class="form-control" id="dateRange" placeholder="Select Start & End Date">
-                        </div>
+        <!-- Date Range -->
+        <div class="mb-3">
+    <label class="form-label text-muted fw-bold">Date Range</label>
+    <div class="d-flex gap-2 align-items-center">
+        <div class="flex-grow-1">
+            <input type="date" class="form-control" id="filterFromDate" placeholder="From Date" style="cursor: pointer;">
+        </div>
+        <div class="flex-grow-1">
+            <input type="date" class="form-control" id="filterToDate" placeholder="To Date" style="cursor: pointer;">
+        </div>
+    </div>
+</div>
 
-                        <button type="button" onclick="applyFilter()" class="btn btn-primary w-100 mt-3">
-                            <i class="bi bi-funnel me-2"></i>Apply Filter
-                        </button>
+        <button type="button" onclick="applyFilter()" class="btn btn-primary w-100 mt-3">
+            <i class="bi bi-funnel me-2"></i>Apply Filter
+        </button>
 
-                        <button type="button" onclick="resetFilter()" class="btn btn-outline-secondary w-100 mt-2">
-                            <i class="bi bi-arrow-repeat me-2"></i>Reset Filter
-                        </button>
-                    </form>
+        <button type="button" onclick="resetFilter()" class="btn btn-outline-secondary w-100 mt-2">
+            <i class="bi bi-arrow-repeat me-2"></i>Reset Filter
+        </button>
+    </form>
 
-                    <!-- Saved Views Section - API Driven -->
-                    <div class="saved-views-container">
-                        <h6 class="text-muted fw-bold mb-3">
-                            <i class="bi bi-bookmarks me-2"></i>Saved Views
-                        </h6>
-                        <div id="savedViewsList" class="saved-views-list">
-                            <!-- Saved views will be dynamically loaded from API -->
-                            <div class="text-muted text-center py-3" id="noSavedViewsMsg">
-                                <i class="bi bi-info-circle me-1"></i>No saved views yet
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <!-- Saved Views Section - API Driven -->
+    <div class="saved-views-container">
+        <h6 class="text-muted fw-bold mb-3">
+            <i class="bi bi-bookmarks me-2"></i>Saved Views
+        </h6>
+        <div id="savedViewsList" class="saved-views-list">
+            <div class="text-muted text-center py-3" id="noSavedViewsMsg">
+                <i class="bi bi-info-circle me-1"></i>No saved views yet
+            </div>
+        </div>
+    </div>
+</div>
             </div>
         </div>
 
@@ -716,38 +793,50 @@
         <!--end col-->
 
         <div class="col-xl-4">
-            <div class="card">
-                <div class="card-header d-flex align-items-center">
-                    <h6 class="card-title flex-grow-1 mb-0">Resolved Ratio</h6>
-                    <div class="flex-shrink-0">
-                        <div class="dropdown">
-                            <button class="btn shadow-none btn-sm btn-icon" type="button" data-bs-toggle="dropdown">
-                                <i class="ti ti-dots fs-md"></i>
-                            </button>
-                        </div>
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+            <h6 class="card-title flex-grow-1 mb-0">Resolved Ratio</h6>
+            <div class="flex-shrink-0">
+                <div class="dropdown">
+                    <button class="btn shadow-none btn-sm btn-icon" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#" onclick="downloadResolvedRatioChart()">
+                            <i class="ri-download-line me-2"></i> Download
+                        </a>
                     </div>
-                </div>
-                <div class="card-body">
-                    <div id="completed_tickets" data-colors='["--tb-secondary"]' class="apex-charts" dir="ltr"></div>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-header d-flex align-items-center">
-                    <h6 class="card-title flex-grow-1 mb-0">By Priority</h6>
-                    <div class="flex-shrink-0">
-                        <div class="dropdown">
-                            <button class="btn shadow-none btn-sm btn-icon" type="button" data-bs-toggle="dropdown">
-                                <i class="ti ti-dots fs-md"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="progress bg-light" id="priorityProgress"></div>
-                    <div class="d-flex mt-2 align-items-center fs-md" id="priorityLabels"></div>
                 </div>
             </div>
         </div>
+        <div class="card-body">
+            <div id="completed_tickets" data-colors='["--tb-secondary"]' class="apex-charts" dir="ltr"></div>
+        </div>
+    </div>
+<!-- </div> -->
+          <!-- <div class="col-xl-4"> -->
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+            <h6 class="card-title flex-grow-1 mb-0">By Priority</h6>
+            <div class="flex-shrink-0">
+                <div class="dropdown">
+                    <button class="btn shadow-none btn-sm btn-icon" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-end">
+                        <a class="dropdown-item" href="#" onclick="downloadPriorityChart()">
+                            <i class="ri-download-line me-2"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="progress bg-light" id="priorityProgress"></div>
+            <div class="d-flex mt-2 align-items-center fs-md" id="priorityLabels"></div>
+        </div>
+    </div>
+</div>
         <!--end col-->
 
         <div class="col-xl-4">
@@ -838,6 +927,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
+        
         // GLOBAL VARIABLES
         let total_tickets = [];
         let currentFilteredTickets = [];
@@ -915,6 +1005,83 @@
         // DOCUMENT READY
         $(document).ready(function () {
 
+            // ✅ Click on From date input to open date picker
+$('#filterFromDate').on('click', function(e) {
+    e.preventDefault();
+    try {
+        if (this.showPicker) {
+            this.showPicker();
+        } else {
+            this.focus();
+            setTimeout(() => { this.click(); }, 100);
+        }
+    } catch (error) {
+        this.focus();
+    }
+});
+
+// ✅ Click on To date input to open date picker
+$('#filterToDate').on('click', function(e) {
+    e.preventDefault();
+    try {
+        if (this.showPicker) {
+            this.showPicker();
+        } else {
+            this.focus();
+            setTimeout(() => { this.click(); }, 100);
+        }
+    } catch (error) {
+        this.focus();
+    }
+});
+
+// ✅ Hover effect - add tooltip
+$('#filterFromDate, #filterToDate').hover(
+    function() {
+        $(this).attr('title', '📅 Click to select date');
+    },
+    function() {
+        $(this).attr('title', '');
+    }
+);
+
+function applyCreatedAtFilterOffcanvas() {
+    console.log("🔍 Applying Created At filter from offcanvas");
+
+    let tickets = total_tickets || [];
+    let now = new Date();
+    let currentMonth = now.getMonth();
+    let currentYear = now.getFullYear();
+
+    let filteredTickets = tickets.filter(function(ticket) {
+        if (!ticket.created_at) return false;
+        let ticketDate = new Date(ticket.created_at);
+        return ticketDate.getMonth() === currentMonth && ticketDate.getFullYear() === currentYear;
+    });
+
+    console.log("📈 Filtered tickets count:", filteredTickets.length);
+
+    updateAllCharts(filteredTickets);
+
+    if (filteredTickets.length > 0) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Filter Applied!',
+            text: 'Showing ' + filteredTickets.length + ' tickets created this month',
+            timer: 1500,
+            showConfirmButton: false
+        });
+    } else {
+        Swal.fire({
+            icon: 'info',
+            title: 'No Tickets Found',
+            text: 'No tickets created this month',
+            timer: 1500,
+            showConfirmButton: false
+        });
+    }
+}
+
             // Initialize Choices.js for Account dropdown
             accountChoices = new Choices("#selectAccount", {
                 removeItemButton: true,
@@ -924,63 +1091,50 @@
                 itemSelectText: 'Press to select',
             });
 
-            // Initialize Flatpickr
-            flatpickr("#dateRange", {
-    mode: "range",
-    dateFormat: "d M, Y",
-    locale: {
-        rangeSeparator: " to "
-    },
-    placeholder: "Select date range",
-    onChange: function(selectedDates, dateStr, instance) {
-        console.log("Date selected:", dateStr);
-        
-        if (selectedDates.length === 2) {
-            let startDate = selectedDates[0];
-            let endDate = selectedDates[1];
-            endDate.setHours(23, 59, 59, 999);
-            
-            console.log("Filtering tickets from:", startDate, "to", endDate);
-            console.log("Total tickets available:", total_tickets.length);
-            
-            // Filter tickets based on date range
-            let filteredByDate = total_tickets.filter(ticket => {
+        // New: From & To Date
+        $('#filterFromDate', '#filterToDate').on('change', function(){
+            let fromDate = $('#filterFromDate').val();
+            let toDate = $('#filterToDate').val();
+
+            if(fromDate && toDate){
+                console.log("Filtering from:", fromDate, "to:", toDate);
+
+                let startDate = new Date(fromDate);
+                startDate.setHours(0,0,0,0);
+
+                let endDate = new Date(toDate);
+                endDate.setHours(23, 59, 59, 999);
+
+                let filteredByDate = total_tickets.filter(ticket => {
                 let ticketDate = new Date(ticket.created_at);
-                return ticketDate >= startDate && ticketDate <= endDate;
-            });
-            
-            console.log("Filtered tickets count:", filteredByDate.length);
-            
-            // Store globally filtered tickets
-            globallyFilteredTickets = filteredByDate;
-            
-            if (filteredByDate.length > 0) {
-                // Update all charts and table
-                updateAllCharts(filteredByDate);
-                
-                // Show success message
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Filter Applied!',
-                    text: `Showing ${filteredByDate.length} tickets`,
-                    timer: 1500,
-                    showConfirmButton: false
+                    return ticketDate >= startDate && ticketDate <= endDate;
                 });
-            } else {
-                Swal.fire({
-                    icon: 'info',
-                    title: 'No Tickets Found',
-                    text: 'No tickets in this date range',
-                    timer: 1500,
-                    showConfirmButton: false
-                });
-                // Show empty data
-                updateAllCharts([]);
-            }
-        }
-    }
-});
-            // Load initial tickets
+                console.log("Filtered tickets count:", filteredByDate.length);
+
+                if (filteredByDate.length > 0) {
+                         updateAllCharts(filteredByDate);
+
+                         Swal.fire({
+                             icon: 'success',
+                             title: 'Filter Applied!',
+                             text: `Showing ${filteredByDate.length} tickets`,
+                             timer: 1500,
+                             showConfirmButton: false
+                         });
+                     } else {
+                         Swal.fire({
+                             icon: 'info',
+                            title: 'No Tickets Found',
+                             text: 'No tickets in this date range',
+                             timer: 1500,
+                         showConfirmButton: false
+                         });
+                         updateAllCharts([]);
+                     }
+                 }
+         });
+
+            // Filter tickets based on date range
             $('#ticket_profilediv').css('display', 'flex');
             loadInitialTickets();
 
@@ -1052,8 +1206,64 @@
             });
         });
 
+// TOPBAR DATE FILTER FUNCTIONS (Global Access)
+function applyTopbarDateFilter(fromDate, toDate) {
+    console.log("🔍 Applying date filter from:", fromDate, "to:", toDate);
+
+    let startDate = new Date(fromDate);
+    startDate.setHours(0, 0, 0, 0);
+
+    let endDate = new Date(toDate);
+    endDate.setHours(23, 59, 59, 999);
+
+    let tickets = total_tickets || [];
+    console.log("📊 Total tickets available:", tickets.length);
+
+    let filteredByDate = tickets.filter(function(ticket) {
+        let ticketDate = new Date(ticket.created_at);
+        return ticketDate >= startDate && ticketDate <= endDate;
+    });
+
+    console.log("📈 Filtered tickets count:", filteredByDate.length);
+
+    // Update charts
+    updateAllCharts(filteredByDate);
+
+    if (filteredByDate.length > 0) {
+        Swal.fire({
+            icon: 'success',
+            title: 'Filter Applied!',
+            text: 'Showing ' + filteredByDate.length + ' tickets',
+            timer: 1500,
+            showConfirmButton: false
+        });
+    } else {
+        Swal.fire({
+            icon: 'info',
+            title: 'No Tickets Found',
+            text: 'No tickets in this date range',
+            timer: 1500,
+            showConfirmButton: false
+        });
+    }
+}
+
+function resetTopbarDateFilter() {
+    console.log("🔄 Resetting Topbar date filter");
+
+    let userId = "{{ Auth::user()->id }}";
+    let assignedToMe = total_tickets.filter(function(t) {
+        return String(t.assigned_to) === String(userId);
+    });
+    let defaultTickets = assignedToMe.length > 0 ? assignedToMe : total_tickets;
+
+    console.log("📊 Default tickets count:", defaultTickets.length);
+
+    updateAllCharts(defaultTickets);
+}
+
         // INITIAL TICKETS LOAD
-function loadInitialTickets() {
+        function loadInitialTickets() {
     let url = '{{Auth::user()->company_id}}' == 0
         ? `{{ config('app.api_url') }}tickets`
         : `{{ config('app.api_url') }}dashboard/get_all_tickets/{{Auth::user()->id}}`;
@@ -1066,7 +1276,12 @@ function loadInitialTickets() {
         dataType: 'json',
         success: function (response) {
             total_tickets = response;
+
+            // ✅ CRITICAL: Set window.total_tickets for Topbar access
+            window.total_tickets = response;
+
             console.log("Total tickets loaded:", total_tickets.length);
+            console.log("window.total_tickets set:", window.total_tickets.length);
 
             // Check assigned_to values
             if(total_tickets.length > 0) {
@@ -1191,17 +1406,28 @@ function loadInitialTickets() {
             console.log("Applying filters...");
 
             let accountId = $('#selectAccount').val();
-            let dateRange = $('#dateRange').val();
+            // let dateRange = $('#dateRange').val();
 
+            // let startDate = null, endDate = null;
+            // if (dateRange) {
+            //     let dates = dateRange.split(" to ");
+            //     if (dates.length >= 1) {
+            //         startDate = new Date(dates[0]);
+            //         endDate = dates.length > 1 ? new Date(dates[1]) : new Date(dates[0]);
+            //         startDate.setHours(0, 0, 0, 0);
+            //         endDate.setHours(23, 59, 59, 999);
+            //     }
+            // }
+
+            let fromDate = $('#filterFromDate').val();
+            let toDate = $('#filterToDate').val();
             let startDate = null, endDate = null;
-            if (dateRange) {
-                let dates = dateRange.split(" to ");
-                if (dates.length >= 1) {
-                    startDate = new Date(dates[0]);
-                    endDate = dates.length > 1 ? new Date(dates[1]) : new Date(dates[0]);
-                    startDate.setHours(0, 0, 0, 0);
-                    endDate.setHours(23, 59, 59, 999);
-                }
+
+            if(fromDate && toDate){
+                startDate = new Date(fromDate);
+                startDate.setHours(0,0,0,0);
+                endDate = new Date(toDate);
+                endDate.setHours(23, 59, 59, 999);
             }
 
             let filtered = total_tickets.filter(ticket => {
@@ -1229,8 +1455,10 @@ function loadInitialTickets() {
 
             if (filtered.length > 0) {
                 // Save current filter values to hidden fields
-                $('#save_from_date').val(startDate ? formatDate(startDate) : '');
-                $('#save_to_date').val(endDate ? formatDate(endDate) : '');
+                // $('#save_from_date').val(startDate ? formatDate(startDate) : '');
+                // $('#save_to_date').val(endDate ? formatDate(endDate) : '');
+                $('#save_from_date').val(fromDate || '');
+                $('#save_to_date').val(toDate || '');
                 $('#save_timeline').val(currentDateFilter || '');
                 $('#save_company').val("{{ Auth::user()->company_id }}");
                 $('#save_bu').val('');
@@ -1440,25 +1668,38 @@ function loadInitialTickets() {
                     }
 
                     // Format date range for display
-                    if (view.from_date && view.to_date) {
-                        let fromDate = new Date(view.from_date);
-                        let toDate = new Date(view.to_date);
+                    // if (view.from_date && view.to_date) {
+                    //     let fromDate = new Date(view.from_date);
+                    //     let toDate = new Date(view.to_date);
 
-                        let formattedFrom = fromDate.toLocaleDateString('en-GB', {
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric'
-                        }).replace(/ /g, ' ');
+                    //     let formattedFrom = fromDate.toLocaleDateString('en-GB', {
+                    //         day: 'numeric',
+                    //         month: 'short',
+                    //         year: 'numeric'
+                    //     }).replace(/ /g, ' ');
 
-                        let formattedTo = toDate.toLocaleDateString('en-GB', {
-                            day: 'numeric',
-                            month: 'short',
-                            year: 'numeric'
-                        }).replace(/ /g, ' ');
+                    //     let formattedTo = toDate.toLocaleDateString('en-GB', {
+                    //         day: 'numeric',
+                    //         month: 'short',
+                    //         year: 'numeric'
+                    //     }).replace(/ /g, ' ');
 
-                        $('#dateRange').val(`${formattedFrom} to ${formattedTo}`);
-                    } else {
-                        $('#dateRange').val('');
+                    //     $('#dateRange').val(`${formattedFrom} to ${formattedTo}`);
+                    // } else {
+                    //     $('#dateRange').val('');
+                    // }
+
+                    // Set From & To Date
+                    if(view.from_date){
+                        $('#filterFromDate').val(view.from_date);
+                    }else{
+                        $('filterFromDate').val('');
+                    }
+
+                    if(view.to_date){
+                        $('#filterToDate').val(view.to_date);
+                    }else{
+                        $('filterToDate').val('');
                     }
 
                     // Set hidden fields
@@ -1565,7 +1806,9 @@ function loadInitialTickets() {
     }
 
     // Reset date range
-    $('#dateRange').val('');
+    // $('#dateRange').val('');
+    $('#filterFromDate').val();
+    $('#filterToDate').val();
 
     // Reset hidden fields
     $('#save_from_date').val('');
@@ -1771,7 +2014,7 @@ function resetDateFilter() {
                 chart: {
                     height: 380,
                     type: 'bar',
-                    toolbar: { show: false },
+                    toolbar: { show: true },
                     events: {
                         dataPointSelection: function (event, chartContext, config) {
                             const selectedStatus = categories[config.dataPointIndex];
@@ -1831,8 +2074,15 @@ function resetDateFilter() {
             var options = {
                 series: counts,
                 chart: {
-                    width: 300,
-                    type: 'pie',
+            width: 300,
+            type: 'pie',
+            // ✅ ADD TOOLBAR
+            toolbar: {
+                show: true,
+                tools: {
+                    download: true
+                }
+            },
                     events: {
                         dataPointSelection: function (event, chartContext, config) {
                             const selectedImpact = labels[config.dataPointIndex];
@@ -1877,7 +2127,7 @@ function resetDateFilter() {
                     type: 'bar',
                     height: 350,
                     stacked: true,
-                    toolbar: { show: false },
+                    toolbar: { show: true },
                     events: {
                         dataPointSelection: function (event, chartContext, config) {
                             const selectedBU = categories[config.dataPointIndex];
@@ -2330,9 +2580,14 @@ function alltickets(ticketData) {
             data: completedCounts
         }],
         chart: {
-            height: 300,
-            type: 'line',
-            toolbar: { show: false },
+    height: 300,
+    type: 'line',
+    toolbar: {
+        show: true,
+        tools: {
+            download: true  // ← DOWNLOAD OPTIONS ENABLE
+        }
+    },
             events: {
                 dataPointSelection: function (event, chartContext, config) {
                     const clickedIndex = config.dataPointIndex;
@@ -2543,15 +2798,16 @@ function alltickets(ticketData) {
         }
 
         // DATA TABLE
-        function fetchtickets(ticketData) {
-    console.log("fetchtickets called with:", ticketData.length, "tickets"); // Debug line
+      // DATA TABLE
+function fetchtickets(ticketData) {
+    console.log("fetchtickets called with:", ticketData.length, "tickets");
 
     if (!$.fn.DataTable.isDataTable('#ticketsTable')) {
         table = $('#ticketsTable').DataTable({
             responsive: true,
             paging: true,
             searching: false,
-            dom: 'frtip',  
+            dom: 'frtip',
             data: ticketData,
             columns: [
                 { data: 'id' },
@@ -2561,14 +2817,262 @@ function alltickets(ticketData) {
                 { data: 'status_title' },
                 { data: 'priority_title' },
                 { data: 'impact_title' },
-                { data: 'created_at' }
+                { data: 'created_at' },
+                {
+                    data: null,
+                    render: function(data, type, row) {
+                        return `
+                            <div class="dropdown">
+                                <button class="btn btn-light btn-sm rounded-circle p-1"
+                                        type="button"
+                                        data-bs-toggle="dropdown"
+                                        aria-expanded="false"
+                                        style="width: 32px; height: 32px; line-height: 1;">
+                                    <i class="bi bi-three-dots-vertical fs-5"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-3 py-1"
+                                    style="min-width: 230px;">
+                                    <!-- ====== OPTION 1: PUBLIC SHARE LINK ====== -->
+                                    <li>
+                                        <a class="dropdown-item py-2 px-3"
+                                           href="#"
+                                           onclick="sharePublicLink(${row.id}); return false;">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <i class="bi bi-globe2 text-success fs-5 mt-1"></i>
+                                                <div>
+                                                    <div>Public Share Link</div>
+                                                    <small class="text-muted">Anyone can view</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <!-- ====== OPTION 2: GENERAL SHARE LINK ====== -->
+                                    <li>
+                                        <a class="dropdown-item py-2 px-3"
+                                           href="#"
+                                           onclick="shareGeneralLink(${row.id}); return false;">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <i class="bi bi-lock text-warning fs-5 mt-1"></i>
+                                                <div>
+                                                    <div>General Share Link</div>
+                                                    <small class="text-muted">Login required</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+
+                                    <!-- ====== NEW OPTION 3: CHAT SHARE LINK ====== -->
+                                    <li>
+    <a class="dropdown-item py-2 px-3"
+       href="#"
+       onclick="shareChatLink(${row.id}); return false;">
+        <div class="d-flex align-items-start gap-2">
+            <i class="bi bi-chat-dots text-primary fs-5 mt-1"></i>
+            <div>
+                <div>Chat Share Link</div>
+                <small class="text-muted">Share via chat</small>
+            </div>
+        </div>
+    </a>
+</li>
+
+                                    <!-- ====== NEW OPTION 4: GROUP SHARE LINK ====== -->
+                                    <li>
+                                        <a class="dropdown-item py-2 px-3"
+                                           href="#"
+                                           onclick="shareGroupLink(${row.id}); return false;">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <i class="bi bi-people text-info fs-5 mt-1"></i>
+                                                <div>
+                                                    <div>Group Share Link</div>
+                                                    <small class="text-muted">Share with group</small>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        `;
+                    }
+                }
             ]
         });
     } else {
         table.clear();
         table.rows.add(ticketData);
         table.draw();
-        console.log("Table refreshed with", ticketData.length, "rows"); // Debug line
+        console.log("Table refreshed with", ticketData.length, "rows");
+    }
+}
+
+
+
+function sharePublicLink(ticketId) {
+    // ✅ 2 days = 172800 seconds
+    const expiryTime = Math.floor(Date.now() / 1000) + 172800;
+    const url = window.location.origin + '/public/ticket/' + ticketId + '?expires=' + expiryTime;
+
+    console.log('Public Share URL with expiry:', url);
+
+    navigator.clipboard.writeText(url)
+        .then(() => {
+            Swal.fire({
+                icon: 'success',
+                title: '✅ Public Share Link Copied!',
+                html: `
+                    <div class="text-start">
+                        <p><strong>🔗 Public Share Link</strong></p>
+                        <code style="background: #f8f9fa; padding: 8px; border-radius: 4px; display: block; word-break: break-all; font-size: 12px;">
+                            ${url}
+                        </code>
+                        <p class="mt-2 text-muted" style="font-size: 12px;">
+                            <i class="bi bi-info-circle"></i>
+                            Anyone can view this ticket without login.
+                            <br>✅ Valid for <strong>2 days</strong> only.
+                            <br>Link will expire on: ${new Date((expiryTime) * 1000).toLocaleString()}
+                        </p>
+                    </div>
+                `,
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#28a745',
+                timer: 5000,
+                timerProgressBar: true
+            });
+        })
+        .catch((error) => {
+            console.error('Clipboard error:', error);
+            fallbackCopyText(url);
+        });
+}
+
+function shareGeneralLink(ticketId) {
+    // ✅ ADDED: open_chat=1 parameter
+    const url = window.location.origin + '/public/tickets-view?id=' + ticketId + '&open_chat=1';
+
+    console.log('General Share URL:', url);
+
+    navigator.clipboard.writeText(url)
+        .then(() => {
+            Swal.fire({
+                icon: 'success',
+                title: '✅ Link Copied Successfully!',
+                html: `
+                    <div class="text-start">
+                        <p><strong>🔒 General Share Link</strong></p>
+                        <div class="bg-light p-2 rounded mb-2" style="word-break: break-all; font-size: 13px;">
+                            <code>${url}</code>
+                        </div>
+                        <div class="mt-2">
+                            <span class="badge bg-info text-dark">
+                                <i class="bi bi-clock"></i> No Expiry
+                            </span>
+                            <span class="badge bg-warning text-dark ms-1">
+                                <i class="bi bi-lock"></i> Login Required
+                            </span>
+                        </div>
+                        <hr>
+                        <p class="text-muted mb-0" style="font-size: 13px;">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>
+                            Click <strong>Open Ticket</strong> to view in new tab
+                        </p>
+                        <p class="text-muted" style="font-size: 12px;">
+                            <i class="bi bi-chat-dots me-1"></i>
+                            Chat will open automatically on the ticket page
+                        </p>
+                    </div>
+                `,
+                confirmButtonText: '📋 Open Ticket',
+                confirmButtonColor: '#0d6efd',
+                showCancelButton: true,
+                cancelButtonText: '❌ Close',
+                cancelButtonColor: '#6c757d',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.open(url, '_blank');
+                }
+            });
+        })
+        .catch((error) => {
+            console.error('Clipboard error:', error);
+            fallbackCopyText(url);
+            Swal.fire({
+                icon: 'warning',
+                title: '⚠️ Manual Copy Required',
+                html: `
+                    <div class="text-start">
+                        <p>Please copy this link manually:</p>
+                        <div class="bg-light p-2 rounded mb-2" style="word-break: break-all; font-size: 13px;">
+                            <code>${url}</code>
+                        </div>
+                        <p class="text-muted" style="font-size: 13px;">
+                            <i class="bi bi-box-arrow-up-right me-1"></i>
+                            Click <strong>Open Ticket</strong> to view in new tab
+                        </p>
+                    </div>
+                `,
+                confirmButtonText: '📋 Open Ticket',
+                confirmButtonColor: '#0d6efd',
+                showCancelButton: true,
+                cancelButtonText: '❌ Close',
+                cancelButtonColor: '#6c757d'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.open(url, '_blank');
+                }
+            });
+        });
+}
+/**
+ * ✅ FALLBACK: Manual copy for browsers without clipboard API support
+ */
+function fallbackCopyText(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    textarea.style.left = '-9999px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    try {
+        document.execCommand('copy');
+        console.log('Fallback copy successful');
+    } catch (err) {
+        console.error('Fallback copy failed:', err);
+    }
+    document.body.removeChild(textarea);
+}
+
+function openChatOffcanvas() {
+    try {
+        // Check if chat offcanvas element exists
+        const chatOffcanvasEl = document.getElementById('chatOffcanvas');
+        if (!chatOffcanvasEl) {
+            console.warn('Chat offcanvas element not found');
+            return;
+        }
+
+        let chatOffcanvas = bootstrap.Offcanvas.getInstance(chatOffcanvasEl);
+        if (!chatOffcanvas) {
+            chatOffcanvas = new bootstrap.Offcanvas(chatOffcanvasEl, {
+                backdrop: false,
+                scroll: true
+            });
+        }
+
+        chatOffcanvas.show();
+
+        console.log('Chat offcanvas opened successfully');
+
+        setTimeout(() => {
+            attemptChatAutoLoginFromMain();
+        }, 1500);
+
+    } catch (error) {
+        console.error('Error opening chat offcanvas:', error);
     }
 }
 
@@ -2784,5 +3288,161 @@ function alltickets(ticketData) {
         // COMPATIBILITY FUNCTIONS
         window.accounts = loadAccountsByCompany;
         window.filterallTickets = window.applyFilter;
+
+
+// DOWNLOAD RESOLVED RATIO CHART
+function downloadResolvedRatioChart() {
+    const chartEl = document.querySelector('#completed_tickets');
+    if (!chartEl) {
+        Swal.fire({ icon: 'error', title: 'Error', text: 'Chart not found!' });
+        return;
+    }
+
+    Swal.fire({
+        title: 'Downloading...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+    });
+
+    const card = chartEl.closest('.card');
+    if (card && typeof html2canvas !== 'undefined') {
+        html2canvas(card, {
+            scale: 2,
+            backgroundColor: '#ffffff',
+            allowTaint: true,
+            useCORS: true
+        }).then((canvas) => {
+            Swal.close();
+            const link = document.createElement('a');
+            link.download = 'Resolved_Ratio.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            Swal.fire({ icon: 'success', title: 'Downloaded!', timer: 1500, showConfirmButton: false });
+        }).catch(() => {
+            Swal.close();
+            Swal.fire({ icon: 'error', title: 'Failed', text: 'Please try again.' });
+        });
+    } else {
+        Swal.close();
+        Swal.fire({ icon: 'info', title: 'Info', text: 'html2canvas library required.' });
+    }
+}
+
+// DOWNLOAD PRIORITY CHART
+function downloadPriorityChart() {
+    const progressEl = document.getElementById('priorityProgress');
+    if (!progressEl) {
+        Swal.fire({ icon: 'error', title: 'Error', text: 'Chart not found!' });
+        return;
+    }
+
+    const card = progressEl.closest('.card');
+    if (!card) {
+        Swal.fire({ icon: 'error', title: 'Error', text: 'Card not found!' });
+        return;
+    }
+
+    Swal.fire({
+        title: 'Downloading...',
+        allowOutsideClick: false,
+        didOpen: () => Swal.showLoading()
+    });
+
+    if (typeof html2canvas !== 'undefined') {
+        html2canvas(card, {
+            scale: 2,
+            backgroundColor: '#ffffff',
+            allowTaint: true,
+            useCORS: true
+        }).then((canvas) => {
+            Swal.close();
+            const link = document.createElement('a');
+            link.download = 'By_Priority.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            Swal.fire({ icon: 'success', title: 'Downloaded!', timer: 1500, showConfirmButton: false });
+        }).catch(() => {
+            Swal.close();
+            Swal.fire({ icon: 'error', title: 'Failed', text: 'Please try again.' });
+        });
+    } else {
+        Swal.close();
+        Swal.fire({ icon: 'info', title: 'Info', text: 'html2canvas library required.' });
+    }
+}
+
+function shareChatLink(ticketId) {
+    // ✅ 1. Generate URL
+    const baseUrl = window.location.origin + '/public/tickets-view';
+    const url = baseUrl + '?id=' + ticketId;
+
+    console.log('Chat Share URL:', url);
+
+    // ✅ 2. Copy to clipboard
+    navigator.clipboard.writeText(url)
+        .then(() => {
+            // ✅ 3. Success Popup
+            Swal.fire({
+                icon: 'success',
+                title: '✅ Chat Share Link Copied!',
+                html: `
+                    <div class="text-start">
+                        <p><strong>💬 Chat Share Link</strong></p>
+                        <code style="background: #f8f9fa; padding: 8px; border-radius: 4px; display: block; word-break: break-all; font-size: 12px;">
+                            ${url}
+                        </code>
+                        <p class="mt-2 text-muted" style="font-size: 12px;">
+                            <i class="bi bi-info-circle"></i>
+                            Paste this link in chat to share with anyone.
+                            <br>Chat will open automatically for you.
+                        </p>
+                    </div>
+                `,
+                confirmButtonText: '📋 Open Chat',
+                confirmButtonColor: '#0d6efd',
+                showCancelButton: true,
+                cancelButtonText: '❌ Close',
+                cancelButtonColor: '#6c757d'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // ✅ 4. Open Floating Chat
+                    openChatOffcanvas();
+                }
+            });
+        })
+        .catch((error) => {
+            console.error('Clipboard error:', error);
+            fallbackCopyText(url);
+            Swal.fire({
+                icon: 'warning',
+                title: '⚠️ Manual Copy Required',
+                html: `
+                    <div class="text-start">
+                        <p>Please copy this link manually:</p>
+                        <code style="background: #f8f9fa; padding: 8px; border-radius: 4px; display: block; word-break: break-all; font-size: 12px;">
+                            ${url}
+                        </code>
+                    </div>
+                `,
+                confirmButtonText: '📋 Open Chat',
+                confirmButtonColor: '#0d6efd'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    openChatOffcanvas();
+                }
+            });
+        });
+}
+
+function fallbackCopyText(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
+}
     </script>
 @endsection

@@ -31,4 +31,14 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'agent_chat' => [
+        'enabled' => env('AGENT_CHAT_ENABLED', true),
+        'provider' => env('AGENT_CHAT_PROVIDER', 'ollama'),
+        'url' => env('AGENT_CHAT_URL', 'http://localhost:11434/api/generate'),
+        'api_key' => env('AGENT_CHAT_API_KEY'),
+        'model' => env('AGENT_CHAT_MODEL', 'llama3.1'),
+        'chat_url' => env('AI_CHAT_URL'),
+        'plan_url' => env('AI_PLAN_URL'),
+    ],
+
 ];

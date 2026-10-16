@@ -2088,6 +2088,45 @@ function refreshTicketData() {
     });
 }
 
+$(document).ready(function() {
+    // ✅ Check if chat should auto-open using URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const autoOpenChat = urlParams.get('open_chat') === '1';
+    
+    if (autoOpenChat) {
+        setTimeout(function() {
+            openChatOnTicketView();
+        }, 1500);
+    }
+});
+
+/**
+ * ✅ Open Chat on ticket-view page
+ */
+function openChatOnTicketView() {
+    try {
+        const chatOffcanvasEl = document.getElementById('chatOffcanvas');
+        if (!chatOffcanvasEl) {
+            console.warn('Chat offcanvas element not found');
+            return;
+        }
+        
+        let chatOffcanvas = bootstrap.Offcanvas.getInstance(chatOffcanvasEl);
+        if (!chatOffcanvas) {
+            chatOffcanvas = new bootstrap.Offcanvas(chatOffcanvasEl, {
+                backdrop: false,
+                scroll: true
+            });
+        }
+        
+        chatOffcanvas.show();
+        console.log('✅ Chat opened automatically on ticket-view page');
+        
+    } catch (error) {
+        console.error('Error opening chat on ticket-view:', error);
+    }
+}
+
 </script>
 <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
 <script src="{{ URL::asset('build/js/app.js') }}"></script>

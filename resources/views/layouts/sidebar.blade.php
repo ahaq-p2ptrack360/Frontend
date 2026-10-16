@@ -186,6 +186,13 @@
     </a>
 </li>
 
+<li class="nav-item">
+    <a href="{{ url('/agent-chat') }}" class="nav-link menu-link">
+        <i class="ri-sparkling-2-line"></i>
+        <span data-key="t-agent-chat">AI Agent</span>
+    </a>
+</li>
+
 
                 <li class="nav-item" data-page="domain">
                     <a href="domain" class="nav-link menu-link">

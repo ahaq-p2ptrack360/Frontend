@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use App\Http\Controllers\TicketController;
+use App\Http\Controllers\TicketShareController;
+use App\Http\Controllers\AgentChatPageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +18,15 @@ use App\Models\User;
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->name('root');
 
+// ✅ PUBLIC ROUTE
+Route::get('/ticket/{id}', [TicketShareController::class, 'show'])
+    ->name('ticket.share');
+
+// ✅ GENERAL SHARE ROUTE 
+Route::get('/public/tickets-view', [TicketShareController::class, 'showGeneralView'])
+    ->name('ticket.general.view');
+    
+    
 Auth::routes();
 // In web.php or api.php
 Route::get('/csrf-token', function() {
@@ -47,7 +59,6 @@ Route::middleware(['cookie.auth'])->group(function () {
     Route::view('/reports', 'report');
     Route::view('/quotations', 'quotation');
 });
-
 
 // Debug Routes
 Route::get('/debug-role', function () {
@@ -107,6 +118,10 @@ Route::get('/api/check-session', function() {
         'user_id' => auth()->id(),
     ]);
 });
+
+Route::get('/agent-chat', [AgentChatPageController::class, 'index'])
+    ->middleware('cookie.auth')
+    ->name('agent.chat');
 
 // Catch-all route (always last)
 Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])
